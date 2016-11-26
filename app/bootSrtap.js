@@ -19,6 +19,13 @@ var genLogid = require('./libs/logid').genLogid;
 var api = require('./libs/api');
 var browserify = require('./libs/browserify');
 
+var _ = require('lodash');
+
+//本地配置文件
+var local = require('../conf/local.js');
+//合并本地配置文件
+config = _.extend(config, local);
+
 app.keys = ['tiancai', 'xiaoguang'];
 
 app.use(function*(next) {

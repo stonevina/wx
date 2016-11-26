@@ -12,7 +12,7 @@ module.exports = {
 
     // 应用全局配置
     app: {
-        port: 6000,
+        port: 8000,
         httpAgentMaxSocks: 30000
     },
 
@@ -57,14 +57,5 @@ module.exports = {
     redis: {
         host: '182.254.209.32',
         port: 6379
-    },
-
-    //mysql配置
-    db: {
-        connectionLimit: 100,
-        host: 'localhost',
-        user: 'xxx',
-        password: 'xxx',
-        database: 'quiz'
     }
 }
