@@ -108,8 +108,8 @@ app.use(function* error(next) {
 });
 
 
-app.listen(8000);
-tclog.notice('UI Server已经启动：http://127.0.0.1:8000');
+app.listen(config.app.port);
+tclog.notice('UI Server已经启动：http://127.0.0.1:' + config.app.port);
 // 启动后通过IO通知watch
 if (runEnv === 'dev') {
     fs.writeFile('./pid', new Date().getTime());

@@ -63,8 +63,8 @@ module.exports = {
     db: {
         connectionLimit: 100,
         host: 'localhost',
-        user: 'root',
-        password: 'root',
+        user: 'xxx',
+        password: 'xxx',
         database: 'quiz'
     }
 }
