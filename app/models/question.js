@@ -24,7 +24,7 @@ exports.newAndSave = function(questions) {
 
       async.map(questions, function(question, cb) {
         return new Promise(function(resolve, reject) {
-          var query = connection.query('INSERT INTO tb_question SET ?', question, 
+          var query = connection.query('INSERT INTO TB_QUESTION SET ?', question, 
             function(err, result) {
               if (err) {
                 var logid = genLogid();

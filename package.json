@@ -14,6 +14,7 @@
     "co": "^4.6.0",
     "commander": "^2.8.1",
     "extend": "^3.0.0",
+    "ioredis": "^2.4.0",
     "jquery": "^3.1.1",
     "jquery-ui": "^1.12.1",
     "koa": "^1.0.0",
@@ -29,8 +30,13 @@
     "mysql2": "^1.1.2",
     "node-xlsx": "^0.7.4",
     "opn": "^3.0.3",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
     "stringify": "^5.1.0",
     "thrift": "^0.9.3",
+    "wechat": "^2.0.3",
+    "wechat-oauth": "^1.2.0",
+    "zepto": "^1.2.0",
     "zeus-template": "*"
   },
   "devDependencies": {

@@ -28,10 +28,13 @@ function set(app) {
 }
 
 function setMap(ctrs) {
-    router.get('/', ctrs.index.show);
+    router.get('/quiz/', ctrs.index.redirect);
+    router.get('/quiz/blank', ctrs.index.blank);
+    router.get('/quiz/portal', ctrs.index.show);
+    
     router.get('/api/getTestData', ctrs.api.getTestData);
 
-    router.get('/v1/api/util/import', ctrs.question.excelToDb);
+    router.get('/quiz/v1/api/util/import', ctrs.question.excelToDb);
 
     // router.post('/v1/api/questions', ctrs.question.add);
     // router.put('/v1/api/questions/:questionId', ctrs.question.update);

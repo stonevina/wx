@@ -4,27 +4,53 @@
  */
 var Backbone = require('backbone');
 
-var dayHolderView = require('../view/day_holder_view.js');
-var projectInstanceView = require('../view/project_instance_view.js');
+var portalView = require('../view/portal_view.js');
+var rankView = require('../view/rank_view.js');
+var ruleView = require('../view/rule_view.js');
+var examView = require('../view/exam_view.js');
+var analysisView = require('../view/analysis_view.js');
+var scoreView = require('../view/score_view.js');
 
 var router = Backbone.Router.extend({
   routes: {
-    'project/today': 'showProjectInstance',
-    'agenda/today': 'showTodayInstance',
-    'agenda/days': 'showLaterInstance'
+    'portal': 'showPortal',
+    'exam': 'startExam',
+    'rank': 'showRank',
+    'rule': 'showRule',
+    'analysis': 'showAnalysis',
+    'score': 'showScore'
   },
   initialize: function() {
-    this.dayHolderView = new dayHolderView();
-    this.projectInstanceView = new projectInstanceView();
+    this.portalInstanceView = new portalView();
+    this.rankInstanceView = new rankView();
+    this.ruleInstanceView = new ruleView();
+    this.examInstanceView = new examView();
+    this.analysisInstanceView = new analysisView();
+    this.scoreInstanceView = new scoreView();
   },
-  showProjectInstance: function() {
-    this.projectInstanceView.render();
+  //显示首页
+  showPortal: function() {
+    this.portalInstanceView.render();
   },
-  showTodayInstance: function() {
-    this.dayHolderView.render();
+  //显示答题结果页面
+  showScore: function() {
+    this.scoreInstanceView.render();
   },
-  showLaterInstance: function() {
-    this.dayHolderView.render();
+  //开始答题
+  startExam: function() {
+    this.examInstanceView.render();
+  },
+  //查看错题解析
+  showAnalysis: function() {
+    this.analysisInstanceView.render();
+  },
+  //排行榜
+  showRank: function() {
+    this.rankInstanceView.render();
+  },
+  //活动规则
+  showRule: function() {
+    this.ruleInstanceView.render();
   }
 });
 

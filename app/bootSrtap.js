@@ -1,9 +1,10 @@
 /**
  * @file bootStrap.js
  * @desc 程序入口
- * @author xiaoguang01
- * @date 2015/9/25
+ * @author shijianguo
+ * @date 2016.11.28 12:59
  */
+
 var config = require('../conf');
 var koa = require('koa');
 var view = require('zeus-template');
@@ -20,11 +21,12 @@ var api = require('./libs/api');
 var browserify = require('./libs/browserify');
 
 var _ = require('lodash');
+var redisClient = new require('ioredis')(config.redis);
 
 //本地配置文件
 var local = require('../conf/local.js');
 //合并本地配置文件
-config = _.extend(config, local);
+global.config = _.extend(config, local);
 
 app.keys = ['tiancai', 'xiaoguang'];
 
@@ -50,6 +52,7 @@ app.use(require('koa-static')(config.statics.staticRoute));
 
 app.use(bodyParser());
 tclog.init();
+
 // live-reload代理中间件
 if (runEnv === 'dev') {
     app.use(function*(next) {
@@ -61,18 +64,18 @@ if (runEnv === 'dev') {
 }
 
 var redis = redisStore({
-    host: config.redis.host,
-    port: config.redis.port
+    client: redisClient
 });
 
-app.redisIsOk = false;
-// redis.on('disconnect',function(){
-//     app.redisIsOk = false;
-// })
-// app.use(session({
-//     store: redis
-// }));
+app.redisIsOk = true;
 
+redis.on('disconnect', function() {
+    app.redisIsOk = false;
+})
+
+app.use(session({
+    store: redis
+}));
 
 app.use(function*(next) {
     var logid = genLogid();
@@ -114,6 +117,7 @@ app.use(function* error(next) {
     }
 });
 
+config.app.port = 4000;
 
 app.listen(config.app.port);
 tclog.notice('UI Server已经启动：http://127.0.0.1:' + config.app.port);
