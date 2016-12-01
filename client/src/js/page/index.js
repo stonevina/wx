@@ -24,7 +24,7 @@ var AppView = Backbone.View.extend({
 
     this.render();
 
-    var router = new Router();
+    window.router = new Router();
     Backbone.history.start();
 
     // router.navigate('/portal', {trigger: true});

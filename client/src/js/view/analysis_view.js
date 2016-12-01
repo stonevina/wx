@@ -4,6 +4,7 @@
  */
 
 var analysisTpl = require('../tpl/analysis.tpl');
+var CorrectionModel = require('../model/correction_model.js');
 
 var analysisView = Backbone.View.extend({
   el: '#container',
@@ -12,11 +13,16 @@ var analysisView = Backbone.View.extend({
   },
   template: analysisTpl,
   initialize: function() {
-    
+    this.model = new CorrectionModel;
   },
   render: function() {
-    var tpl = _.template(this.template)();
-    this.$el.html(tpl);
+    this.model.fetch({
+      url: '/quiz/v1/api/corrections/oZxRysyWK9GtAjRTIepHT00f6XUM'
+    })
+    .then(function(result) {
+      var tpl = _.template(this.template)({corrections: result});
+      this.$el.html(tpl);
+    }.bind(this));
   }
 });
 

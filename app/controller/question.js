@@ -44,3 +44,10 @@ exports.add = function *(next) {
   var result = yield questionModel.newAndSave(question);
   yield this.api(result);
 };
+
+//显示随机的20道题
+exports.showRandomList = function *(next) {
+  var limit = config.limit || 20;
+  var result = yield questionModel.showList(limit);
+  yield this.api(result);
+};

@@ -1,8 +1,8 @@
 /**
  * @file index.js
  * @desc router配置
- * @author xiaoguang01
- * @date 2015/9/25
+ * @author shijianguo
+ * @time 2016.12.1 14:37
  */
 var router = require('koa-router')();
 var ctrs = [];
@@ -31,8 +31,6 @@ function setMap(ctrs) {
     router.get('/quiz/', ctrs.index.redirect);
     router.get('/quiz/blank', ctrs.index.blank);
     router.get('/quiz/portal', ctrs.index.show);
-    
-    router.get('/api/getTestData', ctrs.api.getTestData);
 
     router.get('/quiz/v1/api/util/import', ctrs.question.excelToDb);
 
@@ -40,6 +38,13 @@ function setMap(ctrs) {
     // router.put('/v1/api/questions/:questionId', ctrs.question.update);
     // router.del('/v1/api/questions/:questionId', ctrs.question.del);
     // router.get('/v1/api/questions/:questionId', ctrs.question.showItemById);
-    // router.get('/v1/api/questions', ctrs.question.showAllList);
+    router.get('/quiz/v1/api/questions', ctrs.question.showRandomList);
+    
+    router.get('/quiz/v1/api/corrections/:userid', ctrs.correction.showList);
+    router.post('/quiz/v1/api/corrections', ctrs.correction.add);
+
+    router.get('/quiz/v1/api/scores', ctrs.score.showList);
+    router.post('/quiz/v1/api/scores', ctrs.score.add);
 }
+
 module.exports = set;

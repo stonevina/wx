@@ -1,7 +1,7 @@
 /**
- * @description Question Model
+ * @description Correction Model
  * @author shijianguo
- * @time 2016.11.26 4:08
+ * @time 2016.12.1 11:54
  */
 
 'use strict';
@@ -12,7 +12,7 @@ var db = require('../libs/db.js');
 var tclog = require('../libs/tclog.js');
 var genLogid = require('../libs/logid').genLogid;
 
-//创建并保存一个任务
+//创建并保存一个错题
 exports.newAndSave = function(questions) {
   return new Promise((resolve, reject) => {
     db.getConnection(function(err, connection) {
@@ -24,7 +24,7 @@ exports.newAndSave = function(questions) {
 
       async.map(questions, function(question, cb) {
         return new Promise(function(resolve, reject) {
-          var query = connection.query('INSERT INTO TB_QUESTION SET ?', question, 
+          var query = connection.query('INSERT INTO TB_CORRECTION_ITEM SET ?', question, 
             function(err, result) {
               if (err) {
                 var logid = genLogid();
@@ -58,32 +58,11 @@ exports.newAndSave = function(questions) {
   });
 };
 
-// SELECT
-//   *
-// FROM
-//   TB_QUESTION AS r1
-// JOIN (
-//   SELECT
-//     ROUND(
-//       RAND() * (
-//         SELECT
-//           MAX(id)
-//         FROM
-//           TB_QUESTION
-//       )
-//     ) AS id
-// ) AS r2
-// WHERE
-//   r1.id >= r2.id
-// ORDER BY
-//   r1.id ASC
-// LIMIT 20;
-
-//随机的20道题
-exports.showList = function(limit) {
+//显示错题
+exports.showList = function(userid) {
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
-      var query = connection.query('SELECT * FROM TB_QUESTION ORDER BY rand() LIMIT ?', limit, 
+      var query = connection.query('SELECT tb2.* FROM TB_CORRECTION_ITEM tb1, TB_QUESTION tb2 WHERE tb1.qsid = tb2.id AND tb1.userid = ?', userid,
         function(err, result) {
           if (err) {
             var logid = genLogid();

@@ -4,19 +4,116 @@
  */
 
 var examTpl = require('../tpl/exam.tpl');
+var ExamModel = require('../model/exam_model.js');
+var CorrectionModel = require('../model/correction_model.js');
+var CountUp = require('../page/countup.js');
+
+var ScoreView = require('../view/score_view.js');
 
 var examView = Backbone.View.extend({
   el: '#container',
   events: {
-    
+    'click .choice-item': 'judgeAction'
   },
   template: examTpl,
+  //正计计时模板
+  countupTpl: '<div class="expended-time">\
+                <span class="minute">{minute}</span>\
+                <span>:</span>\
+                <span class="second">{second}</span>\
+                <span>:</span>\
+                <span class="msec">{millisecond}</span>\
+              </div>\
+            ',
   initialize: function() {
-    
+    this.model = new ExamModel;
+    this.questionIndex = 0;
+    //答题数量
+    this.limit = 5;
+
+    this.scoreView = new ScoreView();
+
+    this.countup = new CountUp({
+      precision: 10,
+      onchange: function(time, timeStamp) {
+        var ms = Math.floor(time.millisecond / 10);
+        var time = this.countupTpl
+          .replace(/{minute}/g, time.minute)
+          .replace(/{second}/g, time.second)
+          .replace(/{millisecond}/g, ms < 10 ? '0' + ms : ms);
+        
+        $('.expended-time').html(time);
+        this.expendedTime = timeStamp;
+      }.bind(this)
+    });
+
+    //错题
+    this.corrections = [];
+  },
+  //判断是否正确
+  judgeAction: function(e) {
+    var $target = $(e.currentTarget);
+    var $parent = $target.parent();
+    var selected = $target.data('key');
+    var answer = $parent.data('key');
+    //question id
+    var qsid = $parent.data('id');
+
+    if (selected == answer) {
+      $target.addClass('right');
+    } else {
+      this.corrections.push(qsid);
+      $target.addClass('wrong');
+    }
+
+    this.questionIndex++;
+    this.timer = setTimeout(function() {
+      if (this.questionIndex == this.limit) {
+        clearTimeout(this.timer);
+        this.uploadWrong().then(function() {
+          //上报成绩
+          this.scoreView.create({
+            count: this.limit - this.corrections.length,
+            time: this.expendedTime,
+            userid: 'oZxRysyWK9GtAjRTIepHT00f6XUM'
+          })
+          .then(function() {
+            this.countup.stop();
+            router.navigate('/score', {trigger: true});
+          }.bind(this));
+        }.bind(this))
+      } else {
+        this.next();
+      }
+    }.bind(this), 1000);
+  },
+  //上报错题
+  uploadWrong: function() {
+    this.model = new CorrectionModel({
+      questions: this.corrections,
+      userid: 'oZxRysyWK9GtAjRTIepHT00f6XUM'
+    });
+    return this.model.save();
+  },
+  //显示下一题
+  next: function() {
+    var tpl = _.template(this.template)(this.data[this.questionIndex]);
+    this.$el.html(tpl);
+  },
+  //显示已消耗的时间
+  showExpenedTime: function() {
+
   },
   render: function() {
-    var tpl = _.template(this.template)();
-    this.$el.html(tpl);
+    this.model.fetch()
+    .then(function(result) {
+      this.data = result;
+      var tpl = _.template(this.template)(result[this.questionIndex]);
+      this.$el.html(tpl);
+      this.countup.start();
+    }.bind(this), function(err) {
+
+    });
   }
 });
 
