@@ -44,7 +44,7 @@
       <div class="prize-list-item">
         <i class="prize-grade">4-10名</i>
         <span class="content">
-          <p>上井精致日本料理双人餐</p>
+          <p>上井日本料理双人餐</p>
           <p>院级二等奖奖状</p>
         </span>
       </div>
