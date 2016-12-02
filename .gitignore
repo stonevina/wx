@@ -1,4 +1,5 @@
 node_modules
 pid
 conf/local.js
-log/*
+log/tiancai.log
+.idea
