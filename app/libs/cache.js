@@ -26,6 +26,17 @@ module.exports = {
     .then(onSuccess || this.noop, onFail || this.noop)
     .catch(this.createConnection.bind(this));
   },
+  //promise版的setex
+  pro_setEx: function(key, time, value) {
+    return new Promise((resolve, reject) => {
+      this.redisClient.setex(key, time, value)
+      .then(function(result) {
+        resolve(result);
+      }, function(err) {
+        reject(err);
+      })
+    });
+  },
   //SET if Not eXists 
   //1 如果key被设置了
   //0 如果key没有被设置

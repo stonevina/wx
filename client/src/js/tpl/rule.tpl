@@ -27,18 +27,6 @@
         每个微信号，每天可挑战3次
       </div>
       <div class="list-item">
-        将活动链接分享给朋友，邀请成功则该用户与其朋友在该天内均获得一次额外挑战机会
-      </div>
-      <div class="list-item">
-        邀请多位好友，活动多次挑战机会
-      </div>
-      <div class="list-item">
-        多次邀请同一好友，仅按一次计算
-      </div>
-      <div class="list-item">
-        若两个好友间相互邀请，仅按一次计算
-      </div>
-      <div class="list-item">
         每日0点重置挑战机会，每人重新获得3次
       </div>
     </div>
