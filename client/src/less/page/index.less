@@ -397,6 +397,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(font-size, 30);
   }
   .choice-item {
+    position: relative;
     .px2rem(padding-left, 60);
     .px2rem(padding-right, 60);
     .px2rem(margin-top, 46);
@@ -410,16 +411,36 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       display: table-cell;
       vertical-align: middle;
     }
-    &.right {
-      color: #63bf11;
-      //.px2rem(height, 105);
-      background: url(/img/choice-bg-small-right@2x.png) no-repeat center center;
+    img{
+      display: none;
+      position: absolute;
+      right: 20px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
     }
-    &.wrong {
-      color: #ed0000;
-      //.px2rem(height, 104);
-      background: url(/img/choice-bg-small-wrong@2x.png) no-repeat center center;
-    }
+  }
+  .right {
+    .px2rem(padding-left, 60);
+    .px2rem(padding-right, 60);
+    .px2rem(padding-top, 12);
+    .px2rem(padding-bottom, 12);
+    .px2rem(margin-top, 46);
+    color: #63bf11;
+    .px2rem(min-height, 80);
+    background: url(/img/choice-bg-small-right@2x.png) no-repeat center center;
+    background-size: 100% 100%;
+  }
+  .wrong {
+    .px2rem(padding-left, 60);
+    .px2rem(padding-right, 60);
+    .px2rem(padding-top, 12);
+    .px2rem(padding-bottom, 12);
+    .px2rem(margin-top, 46);
+    color: #ed0000;
+    .px2rem(min-height, 80);
+    background: url(/img/choice-bg-small-wrong@2x.png) no-repeat center center;
+    background-size: 100% 100%;
   }
   .expended-time {
     .px2rem(margin-top, 210);

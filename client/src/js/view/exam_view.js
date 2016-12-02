@@ -65,9 +65,11 @@ var examView = Backbone.View.extend({
 
     if (selected == answer) {
       $target.addClass('right');
+      $target.find('.rightImg').show()
     } else {
       this.corrections.push(qsid);
       $target.addClass('wrong');
+      $target.find('.wrongImg').show()
     }
 
     this.questionIndex++;
