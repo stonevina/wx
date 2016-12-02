@@ -8,12 +8,24 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
   -webkit-font-smoothing: antialiased;
 }
 
-.wrap {
+body {
   position: relative;
   //最外层容器不设置height，会导致font-size rem计算错误
   height: 100%;
   // .px2rem(height, 1206);
   background: url(/img/bg@2x.png) repeat-y center center;
+  background-size: cover;
+  // background-size: contain;
+  text-align: center;
+}
+
+.wrap {
+  position: relative;
+  //最外层容器不设置height，会导致font-size rem计算错误
+  height: 100%;
+  // .px2rem(height, 1206);
+  // background: url(/img/bg@2x.png) repeat-y center center;
+  // background-size: contain;
   // background-size: contain;
   text-align: center;
 }
@@ -24,6 +36,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(height, 107);
     .px2rem(line-height, 107);
     background: url(/img/action-btn@2x.png) no-repeat center center;
+    background-size: contain;
     margin: 0 auto;
     .px2rem(font-size, 44);
   }
@@ -38,6 +51,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(height, 54);
       .px2rem(line-height, 54);
       background: url(/img/label@2x.png) no-repeat center center;
+      background-size: contain;
       .px2rem(font-size, 32);
       color: #ffc03a;
     }
@@ -74,6 +88,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(width, 39);
     .px2rem(height, 30);
     background: url(/img/triangle-icon@2x.png) no-repeat center center;
+    background-size: contain;
   }
 }
 
@@ -97,6 +112,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(width, 642);
       .px2rem(height, 190);
       background: url(/img/header-slogan@2x.png) no-repeat center center;
+      background-size: contain;
       margin: 0 auto;
       .px2rem(padding-bottom, 5);
     }
@@ -112,6 +128,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(width, 43);
       .px2rem(height, 53);
       background: url(/img/icon-star@2x.png) no-repeat center center;
+      background-size: contain;
       &:last-child {
         position: relative;
         .px2rem(top, 20);
@@ -122,6 +139,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(width, 561);
       .px2rem(height, 277);
       background: url(/img/prize-frame@2x.png) no-repeat center center;
+      background-size: contain;
       margin: 0 auto;
       .px2rem(padding-top, 34);
       .list {
@@ -134,15 +152,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
         .px2rem(width, 45);
         .px2rem(height, 45);
         background: url(/img/prize-num_1@2x.png) no-repeat center center;
+        background-size: contain;
         position: relative;
         .px2rem(top, 10);
         .px2rem(margin-right, 10);
       }
       .fore2 {
         background: url(/img/prize-num_2@2x.png) no-repeat center center;
+        background-size: contain;
       }
       .fore3 {
         background: url(/img/prize-num_3@2x.png) no-repeat center center;
+        background-size: contain;
       }
     }
     .remark {
@@ -172,6 +193,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
         .px2rem(width, 36);
         .px2rem(height, 39);
         background: url(/img/icon-time@2x.png) no-repeat center center;
+        background-size: contain;
       }
       .px2rem(font-size, 36);
     }
@@ -185,6 +207,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(height, 254);
     .px2rem(padding-bottom, 36);
     background: url(/img/rank-bg@2x.png) no-repeat center center;
+    background-size: contain;
     margin: 0 auto;
     .grade {
       .px2rem(margin-top, 40);
@@ -226,6 +249,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(height, 74);
     .px2rem(line-height, 74);
     background: url(/img/rank-header@2x.png) no-repeat center center;
+    background-size: contain;
   }
   .tb-body {
     * {
@@ -313,6 +337,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(width, 14);
       .px2rem(height, 14);
       background: url(/img/icon-circle@2x.png) no-repeat center center;
+      background-size: contain;
     }
   }
   .prize-list {
@@ -337,6 +362,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(width, 169);
     .px2rem(height, 42);
     background: url(/img/prize-bg@2x.png) no-repeat center center;
+    background-size: contain;
     color: #fff;
     .px2rem(margin-right, 20);
     position: relative;
@@ -350,6 +376,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(width, 110);
     .px2rem(height, 222);
     background: url(/img/rule-remark@2x.png) no-repeat center center;
+    background-size: contain;
     position: absolute;
     .px2rem(top, 82);
     .px2rem(right, 50);
@@ -477,6 +504,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(width, 750);
       .px2rem(height, 205);
       background: url(/img/exam-bg@2x.png) no-repeat center center;
+      background-size: contain;
       .content {
         .px2rem(padding-left, 30);
         .px2rem(padding-right, 50);
@@ -516,6 +544,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(height, 72);
     .px2rem(line-height, 50);
     background: url(/img/answer@2x.png) no-repeat bottom center;
+    background-size: contain;
     color: #fff;
     .content {
       color: #ff0000;
@@ -542,6 +571,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
       .px2rem(height, 66);
       .px2rem(line-height, 66);
       background: url(/img/score-tip-bg@2x.png) no-repeat bottom center;
+      background-size: contain;
       .px2rem(font-size, 30);
       color: #fff;
       position: relative;
@@ -604,6 +634,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .other {
       .px2rem(margin-top, 10);
       background: url(/img/action-btn-other@2x.png) no-repeat center center;
+      background-size: contain;
     }
   }
 }
