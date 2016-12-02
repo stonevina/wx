@@ -1038,6 +1038,11 @@
       "from": "http://registry.npm.taobao.org/jquery-ui/download/jquery-ui-1.12.1.tgz",
       "resolved": "http://registry.npm.taobao.org/jquery-ui/download/jquery-ui-1.12.1.tgz"
     },
+    "jssha": {
+      "version": "1.5.0",
+      "from": "jssha@1.5.0",
+      "resolved": "http://registry.npm.taobao.org/jssha/download/jssha-1.5.0.tgz"
+    },
     "koa": {
       "version": "1.2.4",
       "from": "http://registry.npm.taobao.org/koa/download/koa-1.2.4.tgz",

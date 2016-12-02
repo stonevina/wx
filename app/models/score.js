@@ -69,8 +69,8 @@ exports.showList = function() {
       s1.userid,
       s1.expended_time
     ORDER BY
-      2 DESC,
-      1 ASC;
+      1 ASC,
+      2 DESC;
   `;
 
   // var querySql = `
@@ -151,10 +151,11 @@ exports.getScore = function(userid) {
   var querySql = `
     SELECT
       tr.userid,
-      count(*) AS rank,
+      count(*) + 1 AS rank,
       tr.nickname,
       tr.expended_time,
-      tr.right_count
+      tr.right_count,
+      tr.total
     FROM
       (
         SELECT DISTINCT

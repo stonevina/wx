@@ -42,7 +42,7 @@ window.formatTime = function(time, tpl) {
 
   var timeObj = {
     minute: Math.floor(time / 1000 / 60),
-    second: Math.floor(time / 1000),
+    second: Math.floor(time / 1000 % 60),
     ms: Math.floor(time % 1000)
   };
 
