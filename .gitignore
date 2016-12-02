@@ -3,3 +3,4 @@ pid
 conf/local.js
 log/tiancai.log
 .idea
+client/build

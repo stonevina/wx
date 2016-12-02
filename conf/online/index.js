@@ -46,15 +46,9 @@ module.exports = {
 	},
 
 	// 后端连接相关配置
-    thirft: {
-        host: '123.57.227.107',
-        port: 9999,
-        timeout: 3000
-    },
-
-	// redis连接相关配置
-	redis: {
-		host: '182.254.209.32',
-		port: 6379
-	}
+  thirft: {
+    host: '123.57.227.107',
+    port: 9999,
+    timeout: 3000
+  }
 }

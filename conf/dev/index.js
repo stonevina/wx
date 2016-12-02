@@ -51,25 +51,5 @@ module.exports = {
         host: '123.57.227.107',
         port: 9999,
         timeout: 3000
-    },
-
-    // redis连接相关配置
-    redis: {
-        sentinels: [{
-            host: '192.168.0.247',
-            port: 26379
-        }, {
-            host: '192.168.0.247',
-            port: 26389
-        }, {
-            host: '192.168.0.247',
-            port: 26399
-        }],
-        name: 'resque',
-        // enableOfflineQueue: false,
-        sentinelRetryStrategy: function(times) {
-            var delay = Math.min(times * 10, 1000);
-            return delay;
-        }
     }
 }

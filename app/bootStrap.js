@@ -20,15 +20,15 @@ var genLogid = require('./libs/logid').genLogid;
 var api = require('./libs/api');
 var browserify = require('./libs/browserify');
 
-var _ = require('lodash');
-var redisClient = new require('ioredis')(config.redis);
-
 //本地配置文件
 var local = require('../conf/local.js');
 //合并本地配置文件
 global.config = _.extend(config, local);
 
 app.keys = ['tiancai', 'xiaoguang'];
+
+var _ = require('lodash');
+var redisClient = new require('ioredis')(config.redis);
 
 app.use(function*(next) {
     if (this.url == '/favicon.ico') {
@@ -116,8 +116,6 @@ app.use(function* error(next) {
         yield next;
     }
 });
-
-config.app.port = 4000;
 
 app.listen(config.app.port);
 tclog.notice('UI Server已经启动：http://127.0.0.1:' + config.app.port);

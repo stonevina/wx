@@ -10,7 +10,7 @@ function browserifyStream(opts) {
   return b;
 };
 
-module.exports = function() {
+exports = module.exports = function() {
   return function *(next) {
     var jsPrefix = '/client/src';
     var url = this.originalUrl;
@@ -36,3 +36,5 @@ module.exports = function() {
     }
   };
 };
+
+exports.browserifyStream = browserifyStream;
