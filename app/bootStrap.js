@@ -20,6 +20,7 @@ var genLogid = require('./libs/logid').genLogid;
 var api = require('./libs/api');
 var browserify = require('./libs/browserify');
 
+var _ = require('lodash');
 //本地配置文件
 var local = require('../conf/local.js');
 //合并本地配置文件
@@ -27,7 +28,6 @@ global.config = _.extend(config, local);
 
 app.keys = ['tiancai', 'xiaoguang'];
 
-var _ = require('lodash');
 var redisClient = new require('ioredis')(config.redis);
 
 app.use(function*(next) {
