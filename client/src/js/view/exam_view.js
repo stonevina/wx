@@ -31,7 +31,7 @@ var examView = Backbone.View.extend({
     this.examModel = new ExamModel;
     this.questionIndex = 0;
     //答题数量
-    this.limit = 20;
+    this.limit = 10;
 
     this.scoreView = new ScoreView();
 
