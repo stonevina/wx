@@ -9,8 +9,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet/less" href="/less/page/<%=pageName%>.less">
-    <script type="text/javascript" src="/bower_components/less/dist/less.min.js"></script>
+    <% if(useLess) {%>
+      <link rel="stylesheet/less" href="/less/page/<%=pageName%>.less">
+      <script type="text/javascript" src="/bower_components/less/dist/less.min.js"></script>
+    <% } else { %>
+      <link rel="stylesheet" href="/css/page/<%=pageName%>.css">
+    <% } %>
     <script type="text/javascript" src="/js/libs/init.js"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
   </head>
