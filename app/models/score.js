@@ -148,39 +148,57 @@ exports.showList = function() {
 exports.getScore = function(userid) {
 
   //汇总sql
+  // var querySql = `
+  //   SELECT
+  //     tr.userid,
+  //     count(*) + 1 AS rank,
+  //     tr.nickname,
+  //     tr.expended_time,
+  //     tr.right_count,
+  //     tr.total
+  //   FROM
+  //     (
+  //       SELECT DISTINCT
+  //         ts.userid,
+  //         min(ts.expended_time) expended_time,
+  //         tu.nickname,
+  //         ts.right_count,
+  //         count(*) AS total
+  //       FROM
+  //         TB_SCORE ts,
+  //         TB_USER tu
+  //       WHERE
+  //         ts.userid = tu.unionid
+  //       GROUP BY
+  //         ts.userid
+  //       ORDER BY
+  //         ts.expended_time ASC
+  //     ) tr
+  //   WHERE
+  //     tr.userid = ?
+  // `;
+
   var querySql = `
-    SELECT
-      tr.userid,
-      count(*) + 1 AS rank,
-      tr.nickname,
-      tr.expended_time,
-      tr.right_count,
-      tr.total
+    SELECT DISTINCT
+      ts.userid,
+      min(ts.expended_time) expended_time,
+      tu.nickname,
+      ts.right_count,
+      count(*) AS total
     FROM
-      (
-        SELECT DISTINCT
-          ts.userid,
-          min(ts.expended_time) expended_time,
-          tu.nickname,
-          ts.right_count,
-          count(*) AS total
-        FROM
-          TB_SCORE ts,
-          TB_USER tu
-        WHERE
-          ts.userid = tu.unionid
-        GROUP BY
-          ts.userid
-        ORDER BY
-          ts.expended_time ASC
-      ) tr
+      TB_SCORE ts,
+      TB_USER tu
     WHERE
-      tr.userid = ?
+      ts.userid = tu.unionid
+    GROUP BY
+      ts.userid
+    ORDER BY
+      expended_time ASC
   `;
 
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
-      var query = connection.query(querySql, userid, 
+      var query = connection.query(querySql, 
         function(err, result) {
           if (err) {
             var logid = genLogid();

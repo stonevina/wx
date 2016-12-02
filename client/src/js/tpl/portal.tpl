@@ -14,7 +14,7 @@
     <div class="prize-content">
       <ul class="list">
         <li>
-          <span><i class="num fore1"></i>kindle paperwhite一台</span>
+          <span><i class="num fore1"></i>kindle paperwhite 3一台</span>
         </li>
         <li>
           <span><i class="num fore2"></i>上井餐券两张</span>
@@ -25,7 +25,7 @@
       </ul>
     </div>
     <div class="remark">
-     所有获奖者同时获得<span class="highlight">「院级奖励证书」</span>和 <span class="highlight">「线下门票」</span>一张。
+     所有获奖者同时获得<span class="highlight">「院级奖励证书」</span>和 <span class="highlight">「现场门票」</span>一张。
     </div>
   </div>
   <div class="footer">

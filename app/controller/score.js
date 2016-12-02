@@ -40,5 +40,13 @@ exports.showRanks = function *(next) {
 exports.getScore = function *(next) {
   var userid = this.params.userid;
   var result = yield scoreModel.getScore(userid);
-  yield this.api(result);
+  var rank = _.findIndex(result, function(o) {
+    return o.userid == userid;
+  });
+  var self = _.find(result, function(o) {
+    return o.userid == userid;
+  });
+  self.rank = rank + 1;
+  self.total = result.length;
+  yield this.api(self);
 };

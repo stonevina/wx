@@ -21,11 +21,9 @@ var rankView = Backbone.View.extend({
     this.model.fetch({
       url: '/quiz/v1/api/scores/' + user.unionid
     })
-    .then(function(scores) {
-      scores.forEach(function(score, index) {
-        $('#J-selfRank').text(score.rank);
-        $('#J-selfScore').text(formatTime(score.expended_time));
-      })
+    .then(function(result) {
+      $('#J-selfRank').text(result.rank);
+      $('#J-selfScore').text(formatTime(result.expended_time));
     })
   },
   render: function() {

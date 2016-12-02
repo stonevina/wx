@@ -28,19 +28,17 @@ var scoreView = Backbone.View.extend({
     model.fetch({
       url: '/quiz/v1/api/scores/' + user.unionid
     })
-    .then(function(results) {
-      results.forEach(function(result, index) {
-        $('#J-time').text((result.expended_time / 1000).toFixed(2));
-        $('#J-rank').text(result.rank);
-        $('#J-percent').text(Math.ceil((result.total - (result.rank - 1)) / result.total * 100) + '%');
-        
-        //前20名
-        if (result.rank <= 20) {
-          $('#J-info').show();
-        } else {
-          $('#J-goal').show();
-        }
-      })
+    .then(function(result) {
+      $('#J-time').text((result.expended_time / 1000).toFixed(2));
+      $('#J-rank').text(result.rank);
+      $('#J-percent').text(Math.ceil((result.total - (result.rank - 1)) / result.total * 100) + '%');
+      
+      //前20名
+      if (result.rank <= 20) {
+        $('#J-info').show();
+      } else {
+        $('#J-goal').show();
+      }
     });
   },
   create: function(props) {
@@ -54,20 +52,20 @@ var scoreView = Backbone.View.extend({
     });
     return this.model.save();
   },
+  ready: function() {
+    share.setShareLink({
+      shareLink: location.pathname,
+      title: '你能识别谎言吗？',
+      desc: '我正在“识别谎言”，我是青涩de高中僧，超过了全校90%的人，快来挑战我吧！'
+    });
+  },
   render: function() {
     var tpl = _.template(this.template)({user: user});
     this.$el.html(tpl);
 
     this.getScore();
+    this.ready();
   }
 });
-
-window.onload = function() {
-  share.setShareLink({
-    shareLink: location.pathname,
-    title: '你能识别谎言吗？',
-    desc: '我正在“识别谎言”，我是青涩de高中僧，超过了全校90%的人，快来挑战我吧！'
-  });
-};
 
 module.exports = scoreView;
