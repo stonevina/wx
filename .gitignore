@@ -1,6 +1,7 @@
+log
+.idea
+client/build
 node_modules
 pid
 conf/local.js
-log/tiancai.log
-.idea
-client/build
+*.log
