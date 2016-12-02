@@ -397,13 +397,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     .px2rem(font-size, 30);
   }
   .choice-item {
-    display: table;
-    .px2rem(width, 628);
-    .px2rem(height, 81);
     .px2rem(padding-left, 60);
+    .px2rem(padding-right, 60);
     .px2rem(margin-top, 46);
     background: url(/img/choice-bg-small@2x.png) no-repeat center center;
-    background-size: contain;
+    background-size: 100% 100%;
     &.more {
       .px2rem(height, 132);
       background: url(/img/choice-bg@2x.png) no-repeat center center;
@@ -414,12 +412,12 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     }
     &.right {
       color: #63bf11;
-      .px2rem(height, 105);
+      //.px2rem(height, 105);
       background: url(/img/choice-bg-small-right@2x.png) no-repeat center center;
     }
     &.wrong {
       color: #ed0000;
-      .px2rem(height, 104);
+      //.px2rem(height, 104);
       background: url(/img/choice-bg-small-wrong@2x.png) no-repeat center center;
     }
   }
