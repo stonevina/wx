@@ -43,7 +43,7 @@ module.exports = {
     var hash = this.query.hash || '';
     //首次授权弹窗显示，之后采用静默方式
     var scope = isAuth ? 'snsapi_base' : 'snsapi_userinfo';
-    var url = client.getAuthorizeURL('https://m.itiancai.com/quiz/blank', hash, scope);
+    var url = client.getAuthorizeURL('https://wx.itiancai.com/quiz/blank', hash, scope);
     this.redirect(url);
   },
   //跳转过渡页

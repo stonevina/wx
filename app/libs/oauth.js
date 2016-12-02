@@ -12,8 +12,8 @@ var base = require('./index');
 
 module.exports = {
   // 测试号
-  'APPID': config.wx_account.test.APPID,
-  'SECRET': config.wx_account.test.SECRET,
+  'APPID': config.wx_account.server.APPID,
+  'SECRET': config.wx_account.server.SECRET,
   //用户同意授权，获取code
   authorize: function(redirect_uri, opt) {
     var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?', opt = opt || {};
