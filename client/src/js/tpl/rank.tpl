@@ -4,8 +4,8 @@
       <img src="<%=self.headimgurl%>" alt="">
     </div>
     <div class="grade">
-      <span class="item" id="J-selfRank">11</span>
-      <span class="item" id="J-selfScore">1分52秒55</span>
+      <span class="item" id="J-selfRank"></span>
+      <span class="item" id="J-selfScore"></span>
     </div>
   </div>
   <div class="content">
@@ -36,7 +36,7 @@
   </div>
   <div class="footer">
     <div class="action">
-      <a href="#exam">立刻去挑战</a>
+      <a href="#portal">立刻去挑战</a>
     </div>
   </div>
 </div>

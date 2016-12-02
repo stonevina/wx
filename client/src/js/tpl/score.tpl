@@ -19,7 +19,7 @@
       <a href="javascript:;" id="J-share">炫耀一把</a>
     </div>
     <div class="action other">
-      <a href="#exam">再次挑战</a>
+      <a href="#portal">再次挑战</a>
     </div>
     <div class="link">
       <a class="item" href="#rank">查看总榜</a>

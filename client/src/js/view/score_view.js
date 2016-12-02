@@ -64,8 +64,9 @@ var scoreView = Backbone.View.extend({
 
 window.onload = function() {
   share.setShareLink({
-    shareLink: location.href,
-    title: '甜菜邀您看比赛-活动入口'
+    shareLink: location.pathname,
+    title: '你能识别谎言吗？',
+    desc: '我正在“识别谎言”，我是青涩de高中僧，超过了全校90%的人，快来挑战我吧！'
   });
 };
 

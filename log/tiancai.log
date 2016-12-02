@@ -50,3 +50,13 @@ NOTICE: pid::8392 2016-12-02 21:38:25     at Object.<anonymous> (F:\tftc\wx\app\
 NOTICE: pid::8392 2016-12-02 21:38:28     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:97:11) { logid: 1480685908963516,  type: 'pv',  method: 'GET',  url: '/quiz/v1/api/scores/oZxRysyWK9GtAjRTIepHT00f6XUM',  userInfo: undefined }
 NOTICE: pid::8392 2016-12-02 21:38:30     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:97:11) { logid: 1480685910017922,  type: 'pv',  method: 'GET',  url: '/quiz/v1/api/signature?url=https%3A%2F%2Fwx.itiancai.com%2Fquiz%2Fportal%23score',  userInfo: undefined }
 NOTICE: pid::8392 2016-12-02 21:38:42     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:97:11) { logid: 1480685922450749,  type: 'pv',  method: 'GET',  url: '/quiz/v1/api/corrections/oZxRysyWK9GtAjRTIepHT00f6XUM',  userInfo: undefined }
+NOTICE: pid::7252 2016-12-02 22:00:40     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::9152 2016-12-02 22:03:03     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::792 2016-12-02 22:03:27     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::4376 2016-12-02 22:04:17     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::7080 2016-12-02 22:04:32     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::7452 2016-12-02 22:04:39     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::5212 2016-12-02 22:05:30     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::5112 2016-12-02 22:05:38     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::8876 2016-12-02 22:05:50     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::1964 2016-12-02 22:06:23     at Object.<anonymous> (F:\tftc\wx\app\bootStrap.js:121:7) UI Server已经启动：http://127.0.0.1:4000

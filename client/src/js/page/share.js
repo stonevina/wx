@@ -8,7 +8,7 @@ var share = {
   },
   setShareLink: function(opts) {
     this.shareLink = opts.link;
-    this.desc = opts.desc || '我报名观看11月27日江苏苏宁与广州恒大的比赛， 请投票支持我免费现场助威';
+    this.desc = opts.desc;
     this.title = opts.title;
     this.init();
   },
