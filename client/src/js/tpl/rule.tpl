@@ -37,14 +37,14 @@
       <div class="prize-list-item">
         <i class="prize-grade">1-3名</i>
         <span class="content">
-          <p>kendle paperwhite一台</p>
+          <p>kindle paperwhite 3 一台</p>
           <p>院级一等奖奖状</p>
         </span>
       </div>
       <div class="prize-list-item">
         <i class="prize-grade">4-10名</i>
         <span class="content">
-          <p>上井餐券×2</p>
+          <p>上井精致日本料理双人餐</p>
           <p>院级二等奖奖状</p>
         </span>
       </div>

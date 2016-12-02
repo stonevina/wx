@@ -35,6 +35,8 @@ var examView = Backbone.View.extend({
     //时间增加值
     this.step = 5 * 1000;
 
+    this.loading = false;
+
     this.scoreView = new ScoreView();
 
     this.countup = new CountUp({
@@ -67,17 +69,22 @@ var examView = Backbone.View.extend({
     //question id
     var qsid = $parent.data('id');
 
+    
+    if (this.loading) return;
+
+
     if (selected == answer) {
       $target.addClass('right');
-      $target.find('.rightImg').show()
+      $target.find('.rightImg').show();
     } else {
       this.countup.addTime(this.step);
       this.corrections.push(qsid);
       $target.addClass('wrong');
-      $target.find('.wrongImg').show()
+      $target.find('.wrongImg').show();
     }
 
     this.questionIndex++;
+    this.loading = true;
     this.timer = setTimeout(function() {
       if (this.questionIndex == this.limit) {
         clearTimeout(this.timer);
@@ -102,7 +109,8 @@ var examView = Backbone.View.extend({
       } else {
         this.next();
       }
-    }.bind(this), 1000);
+      this.loading = false;
+    }.bind(this), 200);
   },
   //上报错题
   uploadWrong: function() {

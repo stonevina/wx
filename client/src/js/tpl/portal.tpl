@@ -17,7 +17,7 @@
           <span><i class="num fore1"></i>kindle paperwhite 3一台</span>
         </li>
         <li>
-          <span><i class="num fore2"></i>上井餐券两张</span>
+          <span><i class="num fore2"></i>上井精致日本料理双人餐</span>
         </li>
         <li>
           <span><i class="num fore3"></i>良品铺子大礼包</span>
