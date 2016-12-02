@@ -12,7 +12,7 @@ var portalView = Backbone.View.extend({
   },
   template: portalTpl,
   initialize: function() {
-    
+    // var user = $('#J-userinfo').data('user');
   },
   render: function() {
     var tpl = _.template(this.template)();

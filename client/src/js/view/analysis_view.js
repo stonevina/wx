@@ -17,7 +17,7 @@ var analysisView = Backbone.View.extend({
   },
   render: function() {
     this.model.fetch({
-      url: '/quiz/v1/api/corrections/oZxRysyWK9GtAjRTIepHT00f6XUM'
+      url: '/quiz/v1/api/corrections/' + user.unionid
     })
     .then(function(result) {
       var tpl = _.template(this.template)({corrections: result});

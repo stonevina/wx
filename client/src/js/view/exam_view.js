@@ -29,26 +29,30 @@ var examView = Backbone.View.extend({
     this.model = new ExamModel;
     this.questionIndex = 0;
     //答题数量
-    this.limit = 5;
+    this.limit = 20;
 
     this.scoreView = new ScoreView();
 
     this.countup = new CountUp({
       precision: 10,
       onchange: function(time, timeStamp) {
-        var ms = Math.floor(time.millisecond / 10);
-        var time = this.countupTpl
-          .replace(/{minute}/g, time.minute)
-          .replace(/{second}/g, time.second)
-          .replace(/{millisecond}/g, ms < 10 ? '0' + ms : ms);
-        
-        $('.expended-time').html(time);
+        var tpl = this.getTimeTpl(time);
+        $('.expended-time').html(tpl);
         this.expendedTime = timeStamp;
       }.bind(this)
     });
 
     //错题
     this.corrections = [];
+  },
+  getTimeTpl: function(time) {
+    var ms = Math.floor(time.millisecond / 10);
+    var timeTpl = this.countupTpl
+      .replace(/{minute}/g, time.minute)
+      .replace(/{second}/g, time.second)
+      .replace(/{millisecond}/g, ms < 10 ? '0' + ms : ms);
+    
+    return timeTpl;
   },
   //判断是否正确
   judgeAction: function(e) {
@@ -75,10 +79,15 @@ var examView = Backbone.View.extend({
           this.scoreView.create({
             count: this.limit - this.corrections.length,
             time: this.expendedTime,
-            userid: 'oZxRysyWK9GtAjRTIepHT00f6XUM'
+            userid:  user.unionid
           })
           .then(function() {
+            //时间
+            var tpl = this.getTimeTpl({minute: '00', second: '00', millisecond: '00'});
+            //停止计时
             this.countup.stop();
+            //重置显示时间
+            $('.expended-time').html(tpl);
             router.navigate('/score', {trigger: true});
           }.bind(this));
         }.bind(this))
@@ -91,7 +100,7 @@ var examView = Backbone.View.extend({
   uploadWrong: function() {
     this.model = new CorrectionModel({
       questions: this.corrections,
-      userid: 'oZxRysyWK9GtAjRTIepHT00f6XUM'
+      userid:  user.unionid
     });
     return this.model.save();
   },
@@ -102,7 +111,7 @@ var examView = Backbone.View.extend({
   },
   //显示已消耗的时间
   showExpenedTime: function() {
-
+    
   },
   render: function() {
     this.model.fetch()

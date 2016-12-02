@@ -11,6 +11,9 @@ var cache = require('../libs/cache.js');
 var tclog = require('../libs/tclog.js');
 var genLogid = require('../libs/logid').genLogid;
 
+var userModel = require('../models/user.js');
+var moment = require('moment');
+
 //授权客户端
 var client = new Wechat_OAuth(oauth.APPID, oauth.SECRET, function(openid, callback) {
   cache.get('wx:' + openid + ':access_token').then(function(token) {
@@ -68,8 +71,17 @@ module.exports = {
     };
 
     var user = yield getWxUser();
-    
     this.session.user = user;
+
+    //用户信息
+    var userProxy = {
+      openid: user.openid,
+      headimgurl: user.headimgurl,
+      unionid: user.unionid,
+      nickname: user.nickname,
+      c_time: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+    };
+    yield userModel.newAndSave(userProxy);
     this.redirect('/quiz/portal');
   },
   //首页

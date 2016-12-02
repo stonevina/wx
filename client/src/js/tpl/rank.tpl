@@ -1,11 +1,11 @@
 <div id="rank">
   <div class="header">
     <div class="avatar">
-      <img src="//wx.qlogo.cn/mmopen/5K48YNcpF3aQYkSibXvgZvE8icZdojEzm3Adwng1NjqtHnfPWg22sHj2HVSLEGQotANcN09O2mNe1zMrOs0FfricQ/0" alt="">
+      <img src="<%=self.headimgurl%>" alt="">
     </div>
     <div class="grade">
-      <span class="item">11</span>
-      <span class="item">1分52秒55</span>
+      <span class="item" id="J-selfRank">11</span>
+      <span class="item" id="J-selfScore">1分52秒55</span>
     </div>
   </div>
   <div class="content">
@@ -16,7 +16,7 @@
     </div>
     <div class="tb-body">
       <ul>
-        <% for (var i = 0; i < 20; i++) { %>
+        <% users.forEach(function(person, i) { %>
           <li class="item">
             <% if (i == 0) { %>
               <span class="fore1 first"><%=i + 1%></span>
@@ -27,10 +27,10 @@
             <% } else { %>
               <span class="fore1"><%=i + 1%></span>
             <% } %>
-            <span class="fore2">愤怒的大白兔</span>
-            <span class="fore3">30秒12</span>
+            <span class="fore2"><%=person.nickname%></span>
+            <span class="fore3"><%=formatTime(person.expended_time)%></span>
           </li>
-        <% } %>
+        <% }) %>
       </ul>
     </div>
   </div>

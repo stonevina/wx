@@ -13,7 +13,27 @@ var scoreView = Backbone.View.extend({
   },
   template: scoreTpl,
   initialize: function() {
-    
+    // this.user = $('#J-userinfo').data('user');
+  },
+  getScore: function() {
+    var model = new ScoreModel;
+    model.fetch({
+      url: '/quiz/v1/api/scores/' + user.unionid
+    })
+    .then(function(results) {
+      results.forEach(function(result, index) {
+        $('#J-time').text((result.expended_time / 1000).toFixed(2));
+        $('#J-rank').text(result.rank);
+        $('#J-percent').text(Math.ceil((result.total - (result.rank - 1)) / result.total * 100) + '%');
+        
+        //前20名
+        if (result.rank <= 20) {
+          $('#J-info').show();
+        } else {
+          $('#J-goal').show();
+        }
+      })
+    });
   },
   create: function(props) {
     this.model = new ScoreModel({
@@ -27,8 +47,9 @@ var scoreView = Backbone.View.extend({
     return this.model.save();
   },
   render: function() {
-    var tpl = _.template(this.template)();
+    var tpl = _.template(this.template)({user: user});
     this.$el.html(tpl);
+    this.getScore();
   }
 });
 

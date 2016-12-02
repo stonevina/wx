@@ -4,14 +4,15 @@
       <img src="//wx.qlogo.cn/mmopen/5K48YNcpF3aQYkSibXvgZvE8icZdojEzm3Adwng1NjqtHnfPWg22sHj2HVSLEGQotANcN09O2mNe1zMrOs0FfricQ/0" alt="">
     </div>
     <div class="tip">
-      <span>蔡沁宇@甜菜金融，恭喜你获得新称号</span>
+      <span><%=user.nickname%>，恭喜你获得新称号</span>
     </div>
   </div>
   <div class="content">
     <div class="grade lv1"></div>
-    <p class="defeater">打败全校<span class="percent">97％</span>的人！</p>
-    <p class="result">您的答案耗时<span class="time">52</span>秒，目前排名<span class="rank">32</span></p>
-    <p class="goal">距离获奖，只差<span class="time">3</span>秒！</p>
+    <p class="defeater">打败全校<span class="percent" id="J-percent"></span>的人！</p>
+    <p class="result">您的答案耗时<span class="time" id="J-time"></span>秒，目前排名<span class="rank" id="J-rank"></span></p>
+    <p class="info" id="J-info">坚持到最后，就会获奖！</p>
+    <p class="goal" id="J-goal">距离获奖，只差<span class="time" id="J-differ"></span>秒！</p>
   </div>
   <div class="footer">
     <div class="action">

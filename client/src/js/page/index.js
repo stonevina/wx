@@ -34,6 +34,24 @@ var AppView = Backbone.View.extend({
   }
 });
 
+//格式化时间
+window.formatTime = function(time, tpl) {
+  tpl = tpl || '{minute}分{second}秒{ms}';
+
+  var timeObj = {
+    minute: Math.floor(time / 1000 / 60),
+    second: Math.floor(time / 1000),
+    ms: Math.floor(time % 1000)
+  };
+
+  return tpl.replace(/{minute}/g, timeObj.minute)
+    .replace(/{second}/g, timeObj.second)
+    .replace(/{ms}/g, timeObj.ms)
+};
+
+//用户信息
+window.user = $('#J-userinfo').data('user');
+
 var App = new AppView;
 
 //百度统计

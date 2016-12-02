@@ -31,8 +31,14 @@ exports.add = function *(next) {
 };
 
 //显示成绩排行榜
-exports.showList = function *(next) {
+exports.showRanks = function *(next) {
+  var result = yield scoreModel.showList();
+  yield this.api(result);
+};
+
+//获取成绩
+exports.getScore = function *(next) {
   var userid = this.params.userid;
-  var result = yield scoreModel.showList(userid);
+  var result = yield scoreModel.getScore(userid);
   yield this.api(result);
 };

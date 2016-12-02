@@ -43,8 +43,9 @@ function setMap(ctrs) {
     router.get('/quiz/v1/api/corrections/:userid', ctrs.correction.showList);
     router.post('/quiz/v1/api/corrections', ctrs.correction.add);
 
-    router.get('/quiz/v1/api/scores', ctrs.score.showList);
+    router.get('/quiz/v1/api/scores', ctrs.score.showRanks);
     router.post('/quiz/v1/api/scores', ctrs.score.add);
+    router.get('/quiz/v1/api/scores/:userid', ctrs.score.getScore);
 }
 
 module.exports = set;
