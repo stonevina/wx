@@ -46,7 +46,7 @@ CountUp.prototype = {
       settings = $.extend({}, defaults, opts);
       $.extend(this, settings);
       
-      this.beginTime = (this.beginTime ? new Date(this.beginTime) : new Date()).getTime();
+      // this.beginTime = (this.beginTime ? new Date(this.beginTime) : new Date()).getTime();
       this.endTime = this.endTime && new Date(this.endTime).getTime() || null;
       
       // this.start();
@@ -75,14 +75,20 @@ CountUp.prototype = {
         return;
       }
     },
+    //增加时间
+    addTime: function(time) {
+      this.beginTime -= time;
+    },
     //当小于1s的时候，chrome浏览器会做优化，当前的标签隐藏时，js将停止执行，使用setTimeout代替setInterval
     start: function () {
+      this.beginTime = (this.beginTime ? new Date(this.beginTime) : new Date()).getTime();
       //this.timer = setInterval($.proxy(this.getLastTime, this), this.precision);
       this.getLastTime();
     },
     stop: function () {
       clearInterval(this.timer);
       this.timer = null;
+      this.beginTime = null;
       this.onEnd.call(this);
     }
 };

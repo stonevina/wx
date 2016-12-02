@@ -32,6 +32,8 @@ var examView = Backbone.View.extend({
     this.questionIndex = 0;
     //答题数量
     this.limit = 10;
+    //时间增加值
+    this.step = 5 * 1000;
 
     this.scoreView = new ScoreView();
 
@@ -69,6 +71,7 @@ var examView = Backbone.View.extend({
       $target.addClass('right');
       $target.find('.rightImg').show()
     } else {
+      this.countup.addTime(this.step);
       this.corrections.push(qsid);
       $target.addClass('wrong');
       $target.find('.wrongImg').show()
@@ -78,6 +81,7 @@ var examView = Backbone.View.extend({
     this.timer = setTimeout(function() {
       if (this.questionIndex == this.limit) {
         clearTimeout(this.timer);
+        this.questionIndex = 0;
         this.uploadWrong().then(function() {
           //上报成绩
           this.scoreView.create({
