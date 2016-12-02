@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 NOTICE: pid::3298 2016-12-02 14:56:12     at Object.<anonymous> (/Users/wangxiaohua/wx/app/bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
 NOTICE: pid::3298 2016-12-02 14:56:24     at Object.<anonymous> (/Users/wangxiaohua/wx/app/bootSrtap.js:97:11) { logid: 1480661784135179,  type: 'pv',  method: 'GET',  url: '/quiz/portal',  userInfo: undefined }
 NOTICE: pid::3298 2016-12-02 14:56:24     at Object.<anonymous> (/Users/wangxiaohua/wx/app/bootSrtap.js:97:11) { logid: 1480661784180119,  type: 'pv',  method: 'GET',  url: '/quiz?returl=/quiz/portal&hash=',  userInfo: undefined }
@@ -77,3 +78,13 @@ NOTICE: pid::6200 2016-12-02 18:55:46     at Object.<anonymous> (/Users/wangxiao
 NOTICE: pid::6200 2016-12-02 18:55:49     at Object.<anonymous> (/Users/wangxiaohua/wx/app/bootSrtap.js:97:11) { logid: 1480676149151923,  type: 'pv',  method: 'GET',  url: '/quiz/v1/api/questions/oZxRys-VC2P-eoCRwxR7h4bwez9M',  userInfo: undefined }
 NOTICE: pid::6200 2016-12-02 18:55:56     at Object.<anonymous> (/Users/wangxiaohua/wx/app/bootSrtap.js:97:11) { logid: 1480676156892994,  type: 'pv',  method: 'GET',  url: '/quiz/portal',  userInfo: undefined }
 NOTICE: pid::6200 2016-12-02 18:55:58     at Object.<anonymous> (/Users/wangxiaohua/wx/app/bootSrtap.js:97:11) { logid: 1480676158602635,  type: 'pv',  method: 'GET',  url: '/quiz/v1/api/questions/oZxRys-VC2P-eoCRwxR7h4bwez9M',  userInfo: undefined }
+=======
+NOTICE: pid::6280 2016-12-02 15:16:11     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::13512 2016-12-02 15:17:34     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::14684 2016-12-02 15:17:47     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::9252 2016-12-02 15:18:58     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::10600 2016-12-02 15:19:25     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::13704 2016-12-02 15:19:31     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::6600 2016-12-02 15:19:34     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+NOTICE: pid::13328 2016-12-02 15:19:45     at Object.<anonymous> (F:\tftc\wx\app\bootSrtap.js:123:7) UI Server已经启动：http://127.0.0.1:4000
+>>>>>>> 26518d4edbf8d396d7033e9cbf8a7af8e488b597

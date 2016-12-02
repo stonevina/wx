@@ -4,6 +4,8 @@
  * @author xiaoguang01
  * @date 2015/9/25
  */
+'use strict';
+
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var livereload = require('gulp-livereload');
@@ -14,7 +16,24 @@ var minifyCss = require('gulp-minify-css');
 var fecs = require('fecs-gulp');
 var fs = require('fs');
 var opn = require('opn');
-var gulpSequence = require('gulp-sequence')
+var gulpSequence = require('gulp-sequence');
+
+var through = require('through2');
+var browserify = require('./app/libs/browserify');
+var shell = require('shelljs');
+
+function browserifyAction() {
+    return through.obj(function(obj, enc, cb) {
+        var self = this;
+
+        browserify.browserifyStream(obj.path).bundle(function(err, contents) {
+            if (err) console.error(err);
+            obj.contents = new Buffer(contents);
+            self.push(obj);
+            cb();
+        });
+    });
+}
 
 // 监听静态文件和模板以及pid修改，并刷新页面
 gulp.task('watch', function () {
@@ -36,7 +55,7 @@ gulp.task('start', function () {
     gulp.src('conf/dev/index.js')
         .pipe(gulp.dest('conf'));
     nodemon({
-        script: './app/bootSrtap.js',
+        script: './app/bootStrap.js',
         ext: 'js',
         execMap: {
             js: 'node --harmony'
@@ -53,7 +72,7 @@ gulp.task('startTest', function () {
     gulp.src('conf/test/index.js')
         .pipe(gulp.dest('conf'));
     nodemon({
-        script: './app/bootSrtap.js',
+        script: './app/bootStrap.js',
         ext: 'js',
         execMap: {
             js: 'node --harmony'
@@ -68,36 +87,10 @@ gulp.task('startTest', function () {
 });
 
 gulp.task('build', function () {
-    // 单元测试
-    // common代码合并压缩
-    var jsArr = [];
-    var data = fs.readFileSync('client/src/js/common.js', 'utf8');
-    var arr = data.split('\n');
-    for (var i = 0, len = arr.length; i < len; i++) {
-        var regx = /src=\"(.+)\"/;
-        if (regx.test(arr[i])) {
-            var jsItem = arr[i].match(regx)[1];
-            if (jsItem !== '') {
-                jsArr.push('client/src' + jsItem);
-            }
-        }
-    }
-
-    gulp.src(jsArr).pipe(concat('common.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('client/build/js/'));
-
-
     // page部分的压缩合并
     gulp.src('client/src/js/page/**/*.js')
-        .pipe(fecs.format())
-        .pipe(gulp.dest('client/src/js/page'))
-        .pipe(fecs.check())
-        .pipe(fecs.reporter('baidu', {
-            color: true,
-            rule: true,
-            sort: true
-        }))
+        .pipe(browserifyAction())
+        .pipe(gulp.dest('client/build/js/page'))
         .pipe(uglify())
         .pipe(gulp.dest('client/build/js/page'));
 
@@ -110,12 +103,6 @@ gulp.task('build', function () {
     	.pipe(less())
         .pipe(minifyCss())
         .pipe(gulp.dest('client/build/css/page'));
-
-    // //压缩编译less
-    gulp.src(['client/src/less/common.less'])
-    	.pipe(less())
-        .pipe(minifyCss())
-        .pipe(gulp.dest('client/build/css'));
 
     // 拷贝图片
     gulp.src('client/src/img/*.{png,jpg,jpeg}')
@@ -130,6 +117,19 @@ gulp.task('build', function () {
 gulp.task('reload', function () {
     gulp.src('')
         .pipe(livereload());
+});
+
+//部署pm2 启动服务
+gulp.task('deploy-start', ['build'], () => {
+  shell.exec('rm ./conf/index.js');
+  shell.exec('cp ./conf/online/index.js ./conf/index.js');
+  shell.exec('pm2 start ./app/bootStrap.js -i 0 --name quiz');
+});
+
+//部署pm2 停止服务
+gulp.task('deploy-stop', () => {
+  let bootstrapPath = path.join(__dirname, 'app/bootStrap.js');
+  shell.exec('pm2 stop ' + bootstrapPath);
 });
 
 // 运行Gulp时，默认的Task

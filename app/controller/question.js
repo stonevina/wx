@@ -51,7 +51,11 @@ exports.showRandomList = function *(next) {
   var count = yield cache.get(key);
   count = count || 0;
 
+<<<<<<< HEAD
   if (count < 300) {
+=======
+  if (count < config.ExamCount) {
+>>>>>>> 26518d4edbf8d396d7033e9cbf8a7af8e488b597
     var now = new Date();
     var today = new Date();
     today.setHours(0);

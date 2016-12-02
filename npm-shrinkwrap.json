@@ -1558,7 +1558,7 @@
     },
     "lodash": {
       "version": "4.17.2",
-      "from": "lodash@latest",
+      "from": "http://registry.npm.taobao.org/lodash/download/lodash-4.17.2.tgz",
       "resolved": "http://registry.npm.taobao.org/lodash/download/lodash-4.17.2.tgz"
     },
     "moment": {
