@@ -12,7 +12,7 @@ module.exports = {
 
     // 应用全局配置
     app: {
-        port: 8000,
+        port: 4000,
         httpAgentMaxSocks: 30000
     },
 

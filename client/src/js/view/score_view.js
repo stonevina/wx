@@ -5,15 +5,23 @@
 
 var scoreTpl = require('../tpl/score.tpl');
 var ScoreModel = require('../model/score_model.js');
+var share = require('../page/share.js');
 
 var scoreView = Backbone.View.extend({
   el: '#container',
   events: {
-    
+    'click #J-share': 'showGuide',
+    'click #J-guide': 'hideGuide'
   },
   template: scoreTpl,
   initialize: function() {
-    // this.user = $('#J-userinfo').data('user');
+    
+  },
+  showGuide: function() {
+    $('#J-guide').show();
+  },
+  hideGuide: function() {
+    $('#J-guide').hide();
   },
   getScore: function() {
     var model = new ScoreModel;
@@ -49,8 +57,16 @@ var scoreView = Backbone.View.extend({
   render: function() {
     var tpl = _.template(this.template)({user: user});
     this.$el.html(tpl);
+
     this.getScore();
   }
 });
+
+window.onload = function() {
+  share.setShareLink({
+    shareLink: location.href,
+    title: '甜菜邀您看比赛-活动入口'
+  });
+};
 
 module.exports = scoreView;

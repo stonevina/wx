@@ -18,9 +18,9 @@ var factory = {
   'NX_TOKEN_KEY': 'h5:wx:calcToken',
   'NX_TICKET_KEY': 'h5:wx:calcTicket',
   'EXPIRE_TIME': 5,
-  //甜菜订阅号
-  'APPID': config.wx_account.subscribe.APPID,
-  'SECRET': config.wx_account.subscribe.SECRET,
+  //理财课代表服务号
+  'APPID': config.wx_account.server.APPID,
+  'SECRET': config.wx_account.server.SECRET,
   init: function() {
     cache.init();
     cache.del(this.NX_TOKEN_KEY);
@@ -43,7 +43,7 @@ var factory = {
     .catch(function(error) {
       //redis error
       if (error) {
-        // return logger.error('获取微信ticket失败:', error);
+        return console.error('获取微信ticket失败:', error);
       }
     });
     
@@ -117,11 +117,11 @@ var factory = {
                 // cache.del(ticketKey);
               }.bind(this));
             } else {
-              // logger.error('接口未返回微信ticket内容:', result);
+              console.error('接口未返回微信ticket内容:', result);
             }
           }.bind(this))
           .catch(function(error) {
-            // logger.error('生成微信ticket失败:', error);
+            console.error('生成微信ticket失败:', error);
           });
         } else {
           return onSuccess.call(this);

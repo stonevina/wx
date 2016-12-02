@@ -43,6 +43,9 @@ function setMap(ctrs) {
     router.get('/quiz/v1/api/scores', ctrs.score.showRanks);
     router.post('/quiz/v1/api/scores', ctrs.score.add);
     router.get('/quiz/v1/api/scores/:userid', ctrs.score.getScore);
+
+    //获取微信签名
+    router.get('/quiz/v1/api/signature', ctrs.share.getSignature);
 }
 
 module.exports = set;

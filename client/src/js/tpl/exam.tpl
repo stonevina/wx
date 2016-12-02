@@ -1,7 +1,5 @@
 <div id="exam">
-  <div class="header">
-    <span class="progress">1</span>/20
-  </div>
+  <div class="header"></div>
   <div class="title">
     <span class="content"><%=title%></span>
   </div>

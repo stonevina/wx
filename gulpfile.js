@@ -21,6 +21,7 @@ var gulpSequence = require('gulp-sequence');
 var through = require('through2');
 var browserify = require('./app/libs/browserify');
 var shell = require('shelljs');
+var path = require('path');
 
 function browserifyAction() {
     return through.obj(function(obj, enc, cb) {

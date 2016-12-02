@@ -43,32 +43,35 @@ exports.newAndSave = function(score) {
 exports.showList = function() {
   
   //汇总sql
-  // var querySql = `
-  //   SELECT
-  //     min(s1.expended_time),
-  //     s1.`right_count`,
-  //     s1.userid
-  //   FROM
-  //     TB_SCORE s1,
-  //     (
-  //       SELECT
-  //         max(right_count) count,
-  //         userid
-  //       FROM
-  //         `TB_SCORE`
-  //       GROUP BY
-  //         userid
-  //     ) s2
-  //   WHERE
-  //     s1.userid = s2.userid
-  //   AND s1.`right_count` = s2.count
-  //   GROUP BY
-  //     s1.userid,
-  //     s1.right_count
-  //   ORDER BY
-  //     2 DESC,
-  //     1 ASC;
-  // `;
+  var querySql = `
+    SELECT
+      s1.expended_time,
+      s1.right_count,
+      s1.userid,
+      tu.nickname
+    FROM
+      TB_SCORE s1,
+      (
+        SELECT
+          min(expended_time) expended_time,
+          userid
+        FROM
+          TB_SCORE
+        GROUP BY
+          userid
+      ) s2,
+      TB_USER tu
+    WHERE
+      s1.userid = s2.userid
+    AND s1.expended_time = s2.expended_time
+    AND tu.unionid = s1.userid
+    GROUP BY
+      s1.userid,
+      s1.expended_time
+    ORDER BY
+      2 DESC,
+      1 ASC;
+  `;
 
   // var querySql = `
   //   SELECT ts.*
@@ -88,41 +91,41 @@ exports.showList = function() {
   //   ORDER BY tf.paixu;
   // `;
 
-  var querySql = `
-    SELECT
-      ts.expended_time,
-      ts.userid,
-      ts.right_count,
-      tu.nickname
-    FROM
-      TB_SCORE ts,
-      (
-        SELECT
-          max(m.row_num) AS paixu,
-          m.id
-        FROM
-          (
-            SELECT
-              @r :=@r + 1 AS row_num,
-              t.*
-            FROM
-              TB_SCORE t,
-              (SELECT @r := 0) b
-            ORDER BY
-              t.right_count DESC,
-              t.expended_time
-          ) m
-        GROUP BY
-          m.userid
-      ) tf,
-      TB_USER tu
-    WHERE
-      ts.id = tf.id
-    AND
-      ts.userid = tu.unionid
-    ORDER BY
-      tf.paixu;
-  `;
+  // var querySql = `
+  //   SELECT
+  //     ts.expended_time,
+  //     ts.userid,
+  //     ts.right_count,
+  //     tu.nickname
+  //   FROM
+  //     TB_SCORE ts,
+  //     (
+  //       SELECT
+  //         max(m.row_num) AS paixu,
+  //         m.id
+  //       FROM
+  //         (
+  //           SELECT
+  //             @r :=@r + 1 AS row_num,
+  //             t.*
+  //           FROM
+  //             TB_SCORE t,
+  //             (SELECT @r := 0) b
+  //           ORDER BY
+  //             t.right_count DESC,
+  //             t.expended_time
+  //         ) m
+  //       GROUP BY
+  //         m.userid
+  //     ) tf,
+  //     TB_USER tu
+  //   WHERE
+  //     ts.id = tf.id
+  //   AND
+  //     ts.userid = tu.unionid
+  //   ORDER BY
+  //     tf.paixu;
+  // `;
 
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
@@ -147,38 +150,31 @@ exports.getScore = function(userid) {
   //汇总sql
   var querySql = `
     SELECT
-      a.userid,
-      a.expended_time,
-      a.right_count,
-      count(*) + 1 AS rank,
-      c.total AS total
+      tr.userid,
+      count(*) AS rank,
+      tr.nickname,
+      tr.expended_time,
+      tr.right_count
     FROM
       (
-        SELECT
-          DISTINCT userid,
-          expended_time,
-          right_count
-        FROM
-          TB_SCORE
-        WHERE
-          userid = ?
-        ORDER BY 
-          right_count DESC
-        LIMIT 1
-      ) a,
-      TB_SCORE b,
-      (
-        SELECT
+        SELECT DISTINCT
+          ts.userid,
+          min(ts.expended_time) expended_time,
+          tu.nickname,
+          ts.right_count,
           count(*) AS total
         FROM
-          TB_SCORE
-      ) c
+          TB_SCORE ts,
+          TB_USER tu
+        WHERE
+          ts.userid = tu.unionid
+        GROUP BY
+          ts.userid
+        ORDER BY
+          ts.expended_time ASC
+      ) tr
     WHERE
-      a.right_count < b.right_count
-    OR (
-      a.right_count <= b.right_count
-      AND a.expended_time > b.expended_time
-    )
+      tr.userid = ?
   `;
 
   return new Promise((resolve, reject) => {

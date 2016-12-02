@@ -1,7 +1,7 @@
 <div id="score">
   <div class="header">
     <div class="avatar">
-      <img src="//wx.qlogo.cn/mmopen/5K48YNcpF3aQYkSibXvgZvE8icZdojEzm3Adwng1NjqtHnfPWg22sHj2HVSLEGQotANcN09O2mNe1zMrOs0FfricQ/0" alt="">
+      <img src="<%=user.headimgurl%>" alt="">
     </div>
     <div class="tip">
       <span><%=user.nickname%>，恭喜你获得新称号</span>
@@ -16,7 +16,7 @@
   </div>
   <div class="footer">
     <div class="action">
-      <a href="#share">炫耀一把</a>
+      <a href="javascript:;" id="J-share">炫耀一把</a>
     </div>
     <div class="action other">
       <a href="#exam">再次挑战</a>
@@ -25,6 +25,7 @@
       <a class="item" href="#rank">查看总榜</a>
       <a class="item" href="#analysis">错题解析</a>
     </div>
+    <div class="guide" id="J-guide"><img src="/img/guide.png"></div>
     <div class="conduct">
       <span>本活动由点鲸财商俱乐部举办</span>
     </div>

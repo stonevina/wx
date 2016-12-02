@@ -25,6 +25,8 @@ var examView = Backbone.View.extend({
                 <span class="msec">{millisecond}</span>\
               </div>\
             ',
+  //当前答题的位置
+  examIndexTpl: '<span class="progress">{index}</span>/{limit}',
   initialize: function() {
     this.examModel = new ExamModel;
     this.questionIndex = 0;
@@ -108,10 +110,14 @@ var examView = Backbone.View.extend({
   next: function() {
     var tpl = _.template(this.template)(this.data[this.questionIndex]);
     this.$el.html(tpl);
+    this.setIndexTpl();
   },
-  //显示已消耗的时间
-  showExpenedTime: function() {
-    
+  setIndexTpl: function() {
+    var indexTpl = this.examIndexTpl
+      .replace(/{index}/g, this.questionIndex + 1)
+      .replace(/{limit}/g, this.limit);
+
+    $('.header').html(indexTpl);
   },
   render: function() {
     this.examModel.fetch({
@@ -121,6 +127,7 @@ var examView = Backbone.View.extend({
       this.data = result;
       var tpl = _.template(this.template)(result[this.questionIndex]);
       this.$el.html(tpl);
+      this.setIndexTpl();
       this.countup.start();
     }.bind(this), function(err) {
       console.log(err);

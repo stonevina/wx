@@ -5,7 +5,12 @@
  */
 module.exports = function(onReady) {
 
-  $.getJSON('/inviter/ajax/api/v3/signature', {url: location.href}, function(result) {
+  Backbone.ajax({
+    url: '/quiz/v1/api/signature',
+    data: {
+      url: location.href
+    }
+  }).then(function(result) {
     //注入微信权限验证配置
     wx.config({
       debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
