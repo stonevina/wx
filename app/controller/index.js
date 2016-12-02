@@ -38,14 +38,18 @@ module.exports = {
   //页面入口，授权后跳转至首页
   redirect: function *() {
     var isAuth = this.cookies.get('oauth');
+    //回调地址
+    // var returl = this.query.returl || '';
+    var hash = this.query.hash || '';
     //首次授权弹窗显示，之后采用静默方式
     var scope = isAuth ? 'snsapi_base' : 'snsapi_userinfo';
-    var url = client.getAuthorizeURL('https://m.itiancai.com/quiz/blank', true, scope);
+    var url = client.getAuthorizeURL('https://m.itiancai.com/quiz/blank', hash, scope);
     this.redirect(url);
   },
   //跳转过渡页
   blank: function *() {
     var code = this.query.code;
+    var hash = this.query.state;
 
     //默认保存一天，一天之内不会再显示授权页面
     this.cookies.set('oauth', true, {
@@ -82,10 +86,21 @@ module.exports = {
       c_time: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
     };
     yield userModel.newAndSave(userProxy);
-    this.redirect('/quiz/portal');
+    this.redirect('/quiz/portal#' + hash);
   },
   //首页
   show: function *() {
+    var hash = this.params.hash || '';
+    var returl = this.originalUrl;
+
+    if (hash) {
+      returl = returl.split(hash)[0];
+    }
+
+    if (!this.session.user) {
+      return this.redirect('/quiz?returl=' + returl + '&hash=' + hash);
+    }
+
     yield this.render('index', {
       userInfo: this.session.user,
       noWrap: true

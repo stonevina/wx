@@ -26,7 +26,7 @@ var examView = Backbone.View.extend({
               </div>\
             ',
   initialize: function() {
-    this.model = new ExamModel;
+    this.examModel = new ExamModel;
     this.questionIndex = 0;
     //答题数量
     this.limit = 20;
@@ -114,14 +114,16 @@ var examView = Backbone.View.extend({
     
   },
   render: function() {
-    this.model.fetch()
+    this.examModel.fetch({
+      url: '/quiz/v1/api/questions/' + user.unionid
+    })
     .then(function(result) {
       this.data = result;
       var tpl = _.template(this.template)(result[this.questionIndex]);
       this.$el.html(tpl);
       this.countup.start();
     }.bind(this), function(err) {
-
+      console.log(err);
     });
   }
 });

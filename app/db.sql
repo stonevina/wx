@@ -39,7 +39,7 @@ CREATE TABLE TB_USER (
   openid VARCHAR(255) NOT NULL COMMENT '微信用户openid',
   headimgurl VARCHAR(255) NOT NULL COMMENT '微信用户头像地址',
   unionid VARCHAR(255) NOT NULL COMMENT '微信用户unionid',
-  nick_name VARCHAR(255) NOT NULL COMMENT '微信用户昵称',
+  nickname VARCHAR(255) NOT NULL COMMENT '微信用户昵称',
   c_time TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   PRIMARY KEY (id)
 ) ENGINE InnoDB DEFAULT CHARSET=utf8 COMMENT '用户';

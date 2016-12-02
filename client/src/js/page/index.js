@@ -27,7 +27,9 @@ var AppView = Backbone.View.extend({
     window.router = new Router();
     Backbone.history.start();
 
-    // router.navigate('/portal', {trigger: true});
+    if (!location.hash) {
+      router.navigate('/portal', {trigger: true});
+    }
   },
   render: function() {
     this.portalView.render();

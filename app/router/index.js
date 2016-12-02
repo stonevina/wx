@@ -31,14 +31,11 @@ function setMap(ctrs) {
     router.get('/quiz/', ctrs.index.redirect);
     router.get('/quiz/blank', ctrs.index.blank);
     router.get('/quiz/portal', ctrs.index.show);
+    router.get('/quiz/portal/:hash', ctrs.index.show);
 
     router.get('/quiz/v1/api/util/import', ctrs.question.excelToDb);
 
-    // router.post('/v1/api/questions', ctrs.question.add);
-    // router.put('/v1/api/questions/:questionId', ctrs.question.update);
-    // router.del('/v1/api/questions/:questionId', ctrs.question.del);
-    // router.get('/v1/api/questions/:questionId', ctrs.question.showItemById);
-    router.get('/quiz/v1/api/questions', ctrs.question.showRandomList);
+    router.get('/quiz/v1/api/questions/:userid', ctrs.question.showRandomList);
     
     router.get('/quiz/v1/api/corrections/:userid', ctrs.correction.showList);
     router.post('/quiz/v1/api/corrections', ctrs.correction.add);

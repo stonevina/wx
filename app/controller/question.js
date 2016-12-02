@@ -12,6 +12,9 @@ var moment = require('moment');
 var _ = require('lodash');
 
 var questionModel = require('../models/question');
+var userModel = require('../models/user');
+
+var cache = require('../libs/cache.js');
 
 //将excel中的题目入库
 exports.excelToDb = function *(next) {
@@ -37,17 +40,44 @@ exports.excelToDb = function *(next) {
   yield this.api(res);
 };
 
-//新增任务
-exports.add = function *(next) {
-  var question = this.request.body;
-  question = _.pick(question, ['title', 'content', 'answer', 'note']);
-  var result = yield questionModel.newAndSave(question);
-  yield this.api(result);
-};
-
 //显示随机的20道题
 exports.showRandomList = function *(next) {
   var limit = config.limit || 20;
-  var result = yield questionModel.showList(limit);
-  yield this.api(result);
+  var userid = this.params.userid;
+  var key = 'quiz:' + userid + ':getQuestions';
+
+  var isExist = yield userModel.query(userid);
+
+  var count = yield cache.get(key);
+  count = count || 0;
+
+  if (count < 3) {
+    var now = new Date();
+    var today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+
+    var end = new Date((today / 1000 + 86400) * 1000);
+    var expire = (end.getTime() - now.getTime()) / 1000;
+    yield cache.pro_setEx(key, expire, ++count);
+  } else {
+    this.status = 403;
+    yield this.api([{
+      success: false,
+      err: 'Limit'
+    }]);
+    return;
+  }
+
+  if (isExist) {
+    var result = yield questionModel.showList(limit);
+    yield this.api(result);
+  } else {
+    this.status = 403;
+    yield this.api([{
+      success: false,
+      err: 'Not Found userid'
+    }])
+  }
 };
