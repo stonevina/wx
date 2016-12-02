@@ -10,6 +10,8 @@
       <% if ($.trim(choiceIndex)) { %>
         <div class="choice-item" data-key="<%=choiceIndex%>">
           <span class="content"><%=choice%></span>
+          <img class='wrongImg' src='/img/wrong.png'>
+          <img class='rightImg' src='/img/right.png'>
         </div>
       <% } %>
     <% }) %>
