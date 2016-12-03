@@ -141,37 +141,41 @@ var scoreView = Backbone.View.extend({
     this.$el.html(tpl);
 
     this.getScore();
-    setTimeout(this.ready, 3000);
+    // setTimeout(this.ready, 1500);
   },
   ready: function() {
-    var percent = $('#J-percent').text();
-    share.setShareLink({
-      link: location.origin + '/quiz',
-      title: '你能识别谎言吗？',
-      desc: '我正在“识别谎言”，我获得称号' + level2Title[level - 1] + '，超过了全校' + percent + '的人，快来挑战我吧！',
-      onSuccess: function() {
-        $('#J-code').addClass('show');
-        $('#J-guide').hide();
-
-        //增加测试次数
-        Backbone.ajax({
-          url: '/quiz/v1/api/questions/add/' + user.unionid,
-          method: 'put'
-        })
-        .then(function(result) {
-          console.log(result);
-        }, function(err) {
-          console.log(err);
-        });
-      },
-      onCancel: function() {
-        // $('#J-score').show();
-      },
-      onFail: function() {
-        // $('#J-score').show();
-      }
-    });
+    
   }
 });
+
+if (/\/score#*/.test(location.pathname)) {
+  var percent = $('#J-percent').text();
+  share.setShareLink({
+    link: location.origin + '/quiz',
+    title: '你能识别谎言吗？',
+    desc: '我正在“识别谎言”，我获得称号' + level2Title[level - 1] + '，超过了全校' + percent + '的人，快来挑战我吧！',
+    onSuccess: function() {
+      $('#J-code').addClass('show');
+      $('#J-guide').hide();
+
+      //增加测试次数
+      Backbone.ajax({
+        url: '/quiz/v1/api/questions/add/' + user.unionid,
+        method: 'put'
+      })
+      .then(function(result) {
+        console.log(result);
+      }, function(err) {
+        console.log(err);
+      });
+    },
+    onCancel: function() {
+      // $('#J-score').show();
+    },
+    onFail: function() {
+      // $('#J-score').show();
+    }
+  });
+}
 
 module.exports = scoreView;
