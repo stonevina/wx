@@ -59,7 +59,7 @@ var portalView = Backbone.View.extend({
   }
 });
 
-if (!/\/score$/.test(location.pathname)) {
+if (!/\/score#*/.test(location.pathname)) {
   window.onload = function() {
     //微信相关内容onload之后执行
     share.setShareLink({
