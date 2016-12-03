@@ -12,8 +12,6 @@ var portalView = require('../view/portal_view.js');
 
 var Router = require('../route/index.js');
 
-var share = require('./share.js');
-
 var AppView = Backbone.View.extend({
   el: 'body',
   events: {
@@ -29,9 +27,11 @@ var AppView = Backbone.View.extend({
     window.router = new Router();
     Backbone.history.start();
 
-    if (!location.hash && !/\/score$/.test(location.pathname)) {
-      router.navigate('/portal', {trigger: true});
-    }
+    router.navigate('/portal', {trigger: true});
+
+    // if (!location.hash && !/\/score$/.test(location.pathname)) {
+    //   router.navigate('/portal', {trigger: true});
+    // }
   },
   render: function() {
     this.portalView.render();
@@ -66,27 +66,3 @@ var _hmt = _hmt || [];
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
-
-
-if (!/\/score$/.test(location.pathname)) {
-  window.onload = function() {
-    //微信相关内容onload之后执行
-    share.setShareLink({
-      link: location.origin + '/quiz/portal',
-      title: '你能识别谎言吗？',
-      desc: '我正在“识别谎言”，快来挑战我吧！',
-      onSuccess: function() {
-        //增加测试次数
-        Backbone.ajax({
-          url: '/quiz/v1/api/questions/add/' + user.unionid,
-          method: 'put'
-        })
-        .then(function(result) {
-          location.reload();
-        }, function(err) {
-          console.log(err);
-        });
-      }
-    });
-  };
-}

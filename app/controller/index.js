@@ -86,7 +86,7 @@ module.exports = {
       c_time: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
     };
     yield userModel.newAndSave(userProxy);
-    this.redirect('/quiz/portal');
+    this.redirect('/quiz/portal#portal');
   },
   //得分页面
   showScore: function *() {
