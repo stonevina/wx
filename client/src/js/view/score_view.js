@@ -141,7 +141,7 @@ var scoreView = Backbone.View.extend({
     this.$el.html(tpl);
 
     this.getScore();
-    setTimeout(this.ready, 6000);
+    setTimeout(this.ready, 1500);
   },
   ready: function() {
     var percent = $('#J-percent').text();
