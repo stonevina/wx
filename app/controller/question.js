@@ -126,7 +126,7 @@ exports.checkExamable = function *() {
   var count = yield cache.get(key);
   count = count || 0;
 
-  if (count < -100) {
+  if (count < config.ExamCount) {
     yield this.api({
       success: true,
       err: ''
