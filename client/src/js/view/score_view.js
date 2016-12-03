@@ -148,7 +148,7 @@ var scoreView = Backbone.View.extend({
   }
 });
 
-if (/\/score$/.test(location.pathname)) {
+if (/\/score#*/.test(location.pathname)) {
   window.onload = function() {
     var percent = $('#J-percent').text();
     share.setShareLink({
