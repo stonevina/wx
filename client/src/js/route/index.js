@@ -9,7 +9,7 @@ var rankView = require('../view/rank_view.js');
 var ruleView = require('../view/rule_view.js');
 var examView = require('../view/exam_view.js');
 var analysisView = require('../view/analysis_view.js');
-var scoreView = require('../view/score_view.js');
+// var scoreView = require('../view/score_view.js');
 
 var router = Backbone.Router.extend({
   routes: {
@@ -18,7 +18,7 @@ var router = Backbone.Router.extend({
     'rank': 'showRank',
     'rule': 'showRule',
     'analysis': 'showAnalysis',
-    'score': 'showScore'
+    // 'score': 'showScore'
   },
   initialize: function() {
     this.portalInstanceView = new portalView();
@@ -26,7 +26,7 @@ var router = Backbone.Router.extend({
     this.ruleInstanceView = new ruleView();
     this.examInstanceView = new examView();
     this.analysisInstanceView = new analysisView();
-    this.scoreInstanceView = new scoreView();
+    // this.scoreInstanceView = new scoreView();
   },
   //显示首页
   showPortal: function() {
