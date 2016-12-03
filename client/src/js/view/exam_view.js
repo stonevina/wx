@@ -104,7 +104,8 @@ var examView = Backbone.View.extend({
             this.countup.stop();
             //重置显示时间
             $('.expended-time').html(tpl);
-            router.navigate('/score', {trigger: true});
+            location.href = location.origin + '/quiz/score';
+            // router.navigate('/score', {trigger: true});
           }.bind(this));
         }.bind(this))
       } else {
