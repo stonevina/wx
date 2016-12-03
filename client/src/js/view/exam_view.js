@@ -81,6 +81,7 @@ var examView = Backbone.View.extend({
       this.corrections.push(qsid);
       $target.addClass('wrong');
       $target.find('.wrongImg').show();
+      $('#J-wrongTip').addClass('show');
     }
 
     this.questionIndex++;
@@ -110,6 +111,7 @@ var examView = Backbone.View.extend({
         this.next();
       }
       this.loading = false;
+      $('#J-wrongTip').removeClass('show');
     }.bind(this), 200);
   },
   //上报错题

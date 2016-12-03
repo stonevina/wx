@@ -10,6 +10,9 @@ var share = {
     this.shareLink = opts.link;
     this.desc = opts.desc;
     this.title = opts.title;
+    this.onSuccess = opts.onSuccess || function() {};
+    this.onCancel = opts.onCancel || function() {};
+    this.onFail = opts.onFail || function() {};
     this.init();
   },
   //微信相关设置、初始化
@@ -21,6 +24,12 @@ var share = {
       //imgUrl: location.origin + '/assets/img/inviter/shareIcon.jpg',
       //Android 下https icon出不来，使用http方式
       imgUrl: 'http://o86ysntn1.qnssl.com/CHANNEL/7f22803139f863281620e6648573d7b6',
+      // 用户确认分享后执行的回调函数
+      success: this.onSuccess,
+      // 用户点击取消时的回调函数
+      cancel: this.onCancel,
+      // 接口调用失败时执行的回调函数
+      fail: this.onFail
     };
 
     // 分享给朋友

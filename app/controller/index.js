@@ -88,6 +88,13 @@ module.exports = {
     yield userModel.newAndSave(userProxy);
     this.redirect('/quiz/portal#' + hash);
   },
+  //得分页面
+  showScore: function *() {
+    yield this.render('score', {
+      userInfo: this.session.user,
+      noWrap: true
+    });
+  },
   //首页
   show: function *() {
     var hash = this.params.hash || '';

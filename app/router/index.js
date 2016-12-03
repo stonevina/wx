@@ -31,7 +31,7 @@ function setMap(ctrs) {
     router.get('/quiz/', ctrs.index.redirect);
     router.get('/quiz/blank', ctrs.index.blank);
     router.get('/quiz/portal', ctrs.index.show);
-    router.get('/quiz/portal/:hash', ctrs.index.show);
+    router.get('/quiz/score', ctrs.index.showScore);
 
     router.get('/quiz/v1/api/util/import', ctrs.question.excelToDb);
 

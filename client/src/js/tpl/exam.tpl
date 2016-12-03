@@ -17,4 +17,5 @@
     <% }) %>
   </div>
   <div class="expended-time"></div>
+  <div class="wrong-tip" id="J-wrongTip"></div>
 </div>

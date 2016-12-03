@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>防诈骗宝典</title>
+    <meta name="keywords" content="防诈骗宝典">
+    <meta name="description" content="防诈骗宝典">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <% if(useLess) {%>
+      <link rel="stylesheet/less" href="/less/page/index.less">
+      <script type="text/javascript" src="/bower_components/less/dist/less.min.js"></script>
+    <% } else { %>
+      <link rel="stylesheet" href="/css/page/index.css">
+    <% } %>
+    <script type="text/javascript" src="/js/page/init.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  </head>
+
+  <body>
+    
+    <div id="J-userinfo" data-user="<%=JSON.stringify(userInfo)%>"></div>
+    <div id="container" class="wrap"></div>
+    
+    <script src="/js/page/index.js"></script>
+    <script src="/js/page/<%=pageName%>.js"></script>
+  </body>
+</html>

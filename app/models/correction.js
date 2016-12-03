@@ -60,9 +60,23 @@ exports.newAndSave = function(questions) {
 
 //显示错题
 exports.showList = function(userid) {
+  
+  var querySQL = `
+    SELECT
+      tb2.*
+    FROM
+      TB_CORRECTION_ITEM tb1,
+      TB_QUESTION tb2
+    WHERE
+      tb1.qsid = tb2.id
+    AND tb1.userid = ?
+    GROUP BY tb2.id
+    ORDER BY tb2.id
+  `;
+
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
-      var query = connection.query('SELECT tb2.* FROM TB_CORRECTION_ITEM tb1, TB_QUESTION tb2 WHERE tb1.qsid = tb2.id AND tb1.userid = ?', userid,
+      var query = connection.query(querySQL, userid,
         function(err, result) {
           if (err) {
             var logid = genLogid();
