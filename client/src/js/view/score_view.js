@@ -141,15 +141,9 @@ var scoreView = Backbone.View.extend({
     this.$el.html(tpl);
 
     this.getScore();
-    // setTimeout(this.ready, 1500);
+    setTimeout(this.ready, 3000);
   },
   ready: function() {
-    
-  }
-});
-
-if (/\/score#*/.test(location.pathname)) {
-  window.onload = function() {
     var percent = $('#J-percent').text();
     share.setShareLink({
       link: location.origin + '/quiz',
@@ -177,7 +171,7 @@ if (/\/score#*/.test(location.pathname)) {
         // $('#J-score').show();
       }
     });
-  };
-}
+  }
+});
 
 module.exports = scoreView;

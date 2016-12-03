@@ -105,7 +105,8 @@ var examView = Backbone.View.extend({
             //重置显示时间
             $('.expended-time').html(tpl);
             // router.navigate('/score', {trigger: true});
-            location.href = location.origin + '/quiz/score';
+            // location.href = location.origin + '/quiz/score';
+            location.replace(location.origin + '/quiz/score');
           }.bind(this));
         }.bind(this))
       } else {
