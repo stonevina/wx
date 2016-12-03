@@ -39,9 +39,6 @@ var portalView = Backbone.View.extend({
 });
 
 window.onload = function() {
-  if (location.hash != '#portal') {
-    return;
-  }
   //微信相关内容onload之后执行
   share.setShareLink({
     link: location.origin + '/quiz/portal',
