@@ -141,13 +141,11 @@ var scoreView = Backbone.View.extend({
     this.$el.html(tpl);
 
     this.getScore();
+    setTimeout(this.ready, 1500);
+    // window.onload = this.ready;
     // this.ready();
-  }
-});
-
-//微信相关内容onload之后执行
-window.onload = function() {
-  if (/\/score$/.test(location.pathname)) { 
+  },
+  ready: function() {
     var percent = $('#J-percent').text();
     share.setShareLink({
       link: location.origin + '/quiz',
@@ -176,6 +174,6 @@ window.onload = function() {
       }
     });
   }
-};
+});
 
 module.exports = scoreView;

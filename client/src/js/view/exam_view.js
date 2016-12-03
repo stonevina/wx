@@ -31,7 +31,7 @@ var examView = Backbone.View.extend({
     this.examModel = new ExamModel;
     this.questionIndex = 0;
     //答题数量
-    this.limit = 15;
+    this.limit = 2;
     //时间增加值
     this.step = 15 * 1000;
 
@@ -104,8 +104,8 @@ var examView = Backbone.View.extend({
             this.countup.stop();
             //重置显示时间
             $('.expended-time').html(tpl);
-            location.href = location.origin + '/quiz/score';
-            // router.navigate('/score', {trigger: true});
+            router.navigate('/score', {trigger: true});
+            // location.href = location.origin + '/quiz/score';
           }.bind(this));
         }.bind(this))
       } else {

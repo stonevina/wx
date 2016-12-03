@@ -38,27 +38,28 @@ var portalView = Backbone.View.extend({
   }
 });
 
-//微信相关内容onload之后执行
-$(function() {
-  if (location.hash == '#portal') {
-    share.setShareLink({
-      link: location.origin + '/quiz/portal',
-      title: '你能识别谎言吗？',
-      desc: '我正在“识别谎言”，快来挑战我吧！',
-      onSuccess: function() {
-        //增加测试次数
-        Backbone.ajax({
-          url: '/quiz/v1/api/questions/add/' + user.unionid,
-          method: 'put'
-        })
-        .then(function(result) {
-          location.reload();
-        }, function(err) {
-          console.log(err);
-        });
-      }
-    });
+window.onload = function() {
+  if (location.hash != '#portal') {
+    return;
   }
-});
+  //微信相关内容onload之后执行
+  share.setShareLink({
+    link: location.origin + '/quiz/portal',
+    title: '你能识别谎言吗？',
+    desc: '我正在“识别谎言”，快来挑战我吧！',
+    onSuccess: function() {
+      //增加测试次数
+      Backbone.ajax({
+        url: '/quiz/v1/api/questions/add/' + user.unionid,
+        method: 'put'
+      })
+      .then(function(result) {
+        location.reload();
+      }, function(err) {
+        console.log(err);
+      });
+    }
+  });
+};
 
 module.exports = portalView;
