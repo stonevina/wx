@@ -31,7 +31,7 @@ var examView = Backbone.View.extend({
     this.examModel = new ExamModel;
     this.questionIndex = 0;
     //答题数量
-    this.limit = 1;
+    this.limit = 15;
     //时间增加值
     this.step = 15 * 1000;
 
