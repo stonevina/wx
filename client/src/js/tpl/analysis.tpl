@@ -30,7 +30,7 @@
   </div>
   <div class="footer">
     <div class="action">
-      <a href="#portal">再次挑战</a>
+      <a href="/quiz/portal">再次挑战</a>
     </div>
   </div>
 </div>

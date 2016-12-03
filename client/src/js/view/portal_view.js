@@ -24,22 +24,20 @@ var portalView = Backbone.View.extend({
     .then(function(result) {
       if (!result.success) {
         $('.limit-tip').show();
-        $('.action').hide();
+        $('#portal .action').hide();
       }
     }, function(err) {
       $('.limit-tip').show();
-      $('.action').hide();
+      $('#portal .action').hide();
     });
   },
   render: function() {
     var tpl = _.template(this.template)();
     this.$el.html(tpl);
     this.check();
-  }
-});
-
-if (!/\/score$/.test(location.pathname)) {
-  window.onload = function() {
+    // this.ready();
+  },
+  ready: function() {
     //微信相关内容onload之后执行
     share.setShareLink({
       link: location.origin + '/quiz/portal',
@@ -58,7 +56,7 @@ if (!/\/score$/.test(location.pathname)) {
         });
       }
     });
-  };
-}
+  }
+});
 
 module.exports = portalView;

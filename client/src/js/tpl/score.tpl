@@ -22,11 +22,11 @@
       <a href="javascript:;" id="J-share">炫耀一把</a>
     </div>
     <div class="action other">
-      <a href="#portal">再次挑战</a>
+      <a href="/quiz/portal">再次挑战</a>
     </div>
     <div class="link">
-      <a class="item" href="#rank">查看总榜</a>
-      <a class="item" href="#analysis">错题解析</a>
+      <a class="item" href="/quiz/portal#rank">查看总榜</a>
+      <a class="item" href="/quiz/portal#analysis">错题解析</a>
     </div>
     <div class="qrcode" id="J-code">
       <i class="close-icon" id="J-close"></i>

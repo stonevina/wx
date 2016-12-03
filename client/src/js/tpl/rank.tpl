@@ -36,7 +36,7 @@
   </div>
   <div class="footer">
     <div class="action">
-      <a href="#portal">立刻去挑战</a>
+      <a href="/quiz/portal">立刻去挑战</a>
     </div>
   </div>
 </div>
