@@ -5,6 +5,7 @@
 
 var scoreTpl = require('../tpl/score.tpl');
 var ScoreModel = require('../model/score_model.js');
+// var CountModel = require('../model/count_model.js');
 var share = require('../page/share.js');
 //等级与称号对应关系
 var level2Title = ['学前班童僧', '幼稚de小学僧', '天真de初中僧', '青涩de高中僧', '成熟de大学僧'];
@@ -109,10 +110,11 @@ var scoreView = Backbone.View.extend({
     .then(function(result) {
       level = this.getLevel(result);
       var levelClassName = 'lv' + level;
+      var percent = result.rank == 1 ? 100 : Math.ceil((result.total - result.rank) / result.total * 100);
 
       $('#J-time').text((result.expended_time / 1000).toFixed(2));
       $('#J-rank').text(result.rank);
-      $('#J-percent').text(Math.ceil((result.total - (result.rank - 1)) / result.total * 100) + '%');
+      $('#J-percent').text(percent + '%');
       $('#J-level').addClass(levelClassName);
 
       //前20名
@@ -143,22 +145,37 @@ var scoreView = Backbone.View.extend({
   }
 });
 
+//微信相关内容onload之后执行
 window.onload = function() {
-  var percent = $('#J-percent').text();
-  share.setShareLink({
-    link: location.origin + '/quiz/portal',
-    title: '你能识别谎言吗？',
-    desc: '我正在“识别谎言”，我获得称号' + level2Title[level - 1] + '，超过了全校' + percent + '的人，快来挑战我吧！',
-    onSuccess: function() {
-      $('#J-code').addClass('show');
-    },
-    onCancel: function() {
-      // $('#J-score').show();
-    },
-    onFail: function() {
-      // $('#J-score').show();
-    }
-  });
+  if (/\/score$/.test(location.pathname)) { 
+    var percent = $('#J-percent').text();
+    share.setShareLink({
+      link: location.origin + '/quiz',
+      title: '你能识别谎言吗？',
+      desc: '我正在“识别谎言”，我获得称号' + level2Title[level - 1] + '，超过了全校' + percent + '的人，快来挑战我吧！',
+      onSuccess: function() {
+        $('#J-code').addClass('show');
+        $('#J-guide').hide();
+
+        //增加测试次数
+        Backbone.ajax({
+          url: '/quiz/v1/api/questions/add/' + user.unionid,
+          method: 'put'
+        })
+        .then(function(result) {
+          console.log(result);
+        }, function(err) {
+          console.log(err);
+        });
+      },
+      onCancel: function() {
+        // $('#J-score').show();
+      },
+      onFail: function() {
+        // $('#J-score').show();
+      }
+    });
+  }
 };
 
 module.exports = scoreView;

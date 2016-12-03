@@ -46,6 +46,10 @@ function setMap(ctrs) {
 
     //获取微信签名
     router.get('/quiz/v1/api/signature', ctrs.share.getSignature);
+    //增加答题次数
+    router.put('/quiz/v1/api/questions/add/:userid', ctrs.question.addCount);
+    //查看是否还有答题机会
+    router.get('/quiz/v1/api/questions/checkExamable/:userid', ctrs.question.checkExamable);
 }
 
 module.exports = set;

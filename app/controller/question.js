@@ -42,7 +42,7 @@ exports.excelToDb = function *(next) {
 
 //显示随机的20道题
 exports.showRandomList = function *(next) {
-  var limit = config.limit || 20;
+  var limit = config.limit || 15;
   var userid = this.params.userid;
   var key = 'quiz:' + userid + ':getQuestions';
 
@@ -79,5 +79,63 @@ exports.showRandomList = function *(next) {
       success: false,
       err: 'Not Found userid'
     }])
+  }
+};
+
+//微信分享增加答题次数
+exports.addCount = function *() {
+  var userid = this.params.userid;
+  var key = 'quiz:' + userid + ':getQuestions';
+  var addKey = 'quiz:' + userid + ':addCount';
+
+  var count = yield cache.get(key);
+  count = count || 0;
+
+  var addCount = yield cache.get(addKey);
+  addCount = addCount || 0;
+
+  //分享增加挑战次数的上限
+  if (addCount >= 1) {
+    this.status = 403;
+    yield this.api([{
+      success: false,
+      err: 'Wx share count is Limited'
+    }]);
+  } else {
+    var now = new Date();
+    var today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+
+    var end = new Date((today / 1000 + 86400) * 1000);
+    var expire = (end.getTime() - now.getTime()) / 1000;
+
+    yield cache.pro_setEx(addKey, expire, ++addCount);
+    var result = yield cache.pro_setEx(key, expire, --count);
+    yield this.api(result);
+  }
+
+};
+
+//查看是否可以继续参与比赛
+exports.checkExamable = function *() {
+  var userid = this.params.userid;
+  var key = 'quiz:' + userid + ':getQuestions';
+
+  var count = yield cache.get(key);
+  count = count || 0;
+
+  if (count < -100) {
+    yield this.api({
+      success: true,
+      err: ''
+    });
+  } else {
+    this.status = 403;
+    yield this.api({
+      success: false,
+      err: 'Join exam count is Limited'
+    })
   }
 };

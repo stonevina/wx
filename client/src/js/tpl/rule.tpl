@@ -13,7 +13,7 @@
         每次20道题
       </div>
       <div class="list-item">
-        答错一题，总时间加5秒，答对无影响，总答题时间为实际答题时间加5秒×错题个数
+        答错一题，总时间加15秒，答对无影响，总答题时间为实际答题时间加15秒×错题个数
       </div>
       <div class="list-item">
         每位参赛者可多次挑战，系统记录最好成绩
@@ -24,10 +24,12 @@
     <div class="title"><i class="triangle-icon"></i>参与机会说明</div>
     <div class="list">
       <div class="list-item">
-        每个微信号，每天可挑战3次
+        每个微信号，每天可挑战5次
       </div>
       <div class="list-item">
-        每日0点重置挑战机会，每人重新获得3次
+        每日分享给好友可额外获得1次
+      </div>      <div class="list-item">
+        每日0点重置挑战机会，每人重新变为5次
       </div>
     </div>
   </div>
@@ -44,7 +46,7 @@
       <div class="prize-list-item">
         <i class="prize-grade">4-10名</i>
         <span class="content">
-          <p>上井日本料理双人餐</p>
+          <p>四海一家双人自助餐</p>
           <p>院级二等奖奖状</p>
         </span>
       </div>

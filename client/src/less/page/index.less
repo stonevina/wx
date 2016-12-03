@@ -201,6 +201,13 @@ body {
       .px2rem(font-size, 36);
     }
   }
+  .limit-tip {
+    display: none;
+    .txt {
+      .px2rem(font-size, 30);
+      .px2rem(line-height, 45);
+    }
+  }
 }
 
 #rank {
@@ -485,8 +492,8 @@ body {
     transition: all .4s;
     &.show {
       display: block;
-      -webkit-transform: scale(0.5);
-      transform: scale(0.5);
+      // -webkit-transform: scale(0.5);
+      // transform: scale(0.5);
     }
   }
   .expended-time {
@@ -751,7 +758,7 @@ body {
       position: absolute;
       .px2rem(top, 300);
       .px2rem(left, 158);
-      .px2rem(width, 495);
+      .px2rem(width, 435);
       .px2rem(height, 582);
     }
     &.show {

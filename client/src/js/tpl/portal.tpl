@@ -17,7 +17,7 @@
           <span><i class="num fore1"></i>kindle paperwhite 3一台</span>
         </li>
         <li>
-          <span><i class="num fore2"></i>上井日本料理双人餐</span>
+          <span><i class="num fore2"></i>四海一家双人自助餐</span>
         </li>
         <li>
           <span><i class="num fore3"></i>良品铺子大礼包</span>
@@ -30,7 +30,11 @@
   </div>
   <div class="footer">
     <div class="action">
-      <a href="#exam">立刻挑战</a>
+      <a href="#exam" id="J-exam">立刻挑战</a>
+    </div>
+    <div class="limit-tip">
+      <p class="txt">5次挑战机会已用完</p>
+      <p class="txt">分享本活动每日可额外获得一次机会</p>
     </div>
     <div class="link">
       <a class="item" href="#rank">排行榜</a>
