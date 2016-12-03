@@ -106,7 +106,7 @@ var examView = Backbone.View.extend({
             $('.expended-time').html(tpl);
             // router.navigate('/score', {trigger: true});
             // location.href = location.origin + '/quiz/score';
-            location.replace(location.origin + '/quiz/score');
+            location.replace(location.origin + '/quiz/score#portal');
           }.bind(this));
         }.bind(this))
       } else {
