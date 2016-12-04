@@ -108,6 +108,11 @@ var scoreView = Backbone.View.extend({
       url: '/quiz/v1/api/scores/' + user.unionid
     })
     .then(function(result) {
+      
+      if (_.isEmpty(result)) {
+        return;
+      }
+
       level = this.getLevel(result);
       var levelClassName = 'lv' + level;
       var percent = result.rank == 1 ? 100 : Math.ceil((result.total - result.rank) / result.total * 100);

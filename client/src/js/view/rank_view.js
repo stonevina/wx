@@ -22,6 +22,11 @@ var rankView = Backbone.View.extend({
       url: '/quiz/v1/api/scores/' + user.unionid
     })
     .then(function(result) {
+      
+      if (_.isEmpty(result)) {
+        return;
+      }
+
       $('#J-selfRank').text(result.rank);
       $('#J-selfScore').text(formatTime(result.expended_time));
     })
