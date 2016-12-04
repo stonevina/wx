@@ -54,7 +54,8 @@ exports.showList = function() {
       (
         SELECT
           min(expended_time) expended_time,
-          userid
+          userid,
+          c_time
         FROM
           TB_SCORE
         GROUP BY
@@ -65,6 +66,8 @@ exports.showList = function() {
       s1.userid = s2.userid
     AND s1.expended_time = s2.expended_time
     AND tu.unionid = s1.userid
+    AND
+      s2.c_time between ${config.ActivityTime[0]} and ${config.ActivityTime[1]}
     GROUP BY
       s1.userid,
       s1.expended_time
@@ -190,6 +193,8 @@ exports.getScore = function(userid) {
       TB_USER tu
     WHERE
       ts.userid = tu.unionid
+    AND
+      ts.c_time between ${config.ActivityTime[0]} and ${config.ActivityTime[1]}
     GROUP BY
       ts.userid
     ORDER BY
