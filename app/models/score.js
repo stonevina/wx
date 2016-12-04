@@ -67,7 +67,7 @@ exports.showList = function() {
     AND s1.expended_time = s2.expended_time
     AND tu.unionid = s1.userid
     AND
-      s2.c_time between ${config.ActivityTime[0]} and ${config.ActivityTime[1]}
+      s2.c_time between '${config.ActivityTime[0]}' and '${config.ActivityTime[1]}'
     GROUP BY
       s1.userid,
       s1.expended_time
@@ -76,60 +76,6 @@ exports.showList = function() {
       2 DESC;
   `;
 
-  // var querySql = `
-  //   SELECT ts.*
-  //   FROM TB_SCORE ts,
-
-  //     (SELECT max(m.row_num) AS paixu,
-  //             m.`id`
-  //      FROM
-  //        (SELECT @r:=@r+1 AS row_num,
-  //                     t.*
-  //         FROM TB_SCORE t,
-
-  //           (SELECT @r:=0) b
-  //         ORDER BY t.`right_count` DESC,t.`expended_time`) m
-  //      GROUP BY m.`userid`) tf
-  //   WHERE ts.`id`=tf.id
-  //   ORDER BY tf.paixu;
-  // `;
-
-  // var querySql = `
-  //   SELECT
-  //     ts.expended_time,
-  //     ts.userid,
-  //     ts.right_count,
-  //     tu.nickname
-  //   FROM
-  //     TB_SCORE ts,
-  //     (
-  //       SELECT
-  //         max(m.row_num) AS paixu,
-  //         m.id
-  //       FROM
-  //         (
-  //           SELECT
-  //             @r :=@r + 1 AS row_num,
-  //             t.*
-  //           FROM
-  //             TB_SCORE t,
-  //             (SELECT @r := 0) b
-  //           ORDER BY
-  //             t.right_count DESC,
-  //             t.expended_time
-  //         ) m
-  //       GROUP BY
-  //         m.userid
-  //     ) tf,
-  //     TB_USER tu
-  //   WHERE
-  //     ts.id = tf.id
-  //   AND
-  //     ts.userid = tu.unionid
-  //   ORDER BY
-  //     tf.paixu;
-  // `;
-
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
       var query = connection.query(querySql, 
@@ -137,7 +83,6 @@ exports.showList = function() {
           if (err) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err});
-            cb(err);
             return reject(err);
           }
 
@@ -149,37 +94,6 @@ exports.showList = function() {
 
 //获取自己的排名
 exports.getScore = function(userid) {
-
-  //汇总sql
-  // var querySql = `
-  //   SELECT
-  //     tr.userid,
-  //     count(*) + 1 AS rank,
-  //     tr.nickname,
-  //     tr.expended_time,
-  //     tr.right_count,
-  //     tr.total
-  //   FROM
-  //     (
-  //       SELECT DISTINCT
-  //         ts.userid,
-  //         min(ts.expended_time) expended_time,
-  //         tu.nickname,
-  //         ts.right_count,
-  //         count(*) AS total
-  //       FROM
-  //         TB_SCORE ts,
-  //         TB_USER tu
-  //       WHERE
-  //         ts.userid = tu.unionid
-  //       GROUP BY
-  //         ts.userid
-  //       ORDER BY
-  //         ts.expended_time ASC
-  //     ) tr
-  //   WHERE
-  //     tr.userid = ?
-  // `;
 
   var querySql = `
     SELECT DISTINCT
@@ -194,7 +108,7 @@ exports.getScore = function(userid) {
     WHERE
       ts.userid = tu.unionid
     AND
-      ts.c_time between ${config.ActivityTime[0]} and ${config.ActivityTime[1]}
+      ts.c_time between '${config.ActivityTime[0]}' and '${config.ActivityTime[1]}'
     GROUP BY
       ts.userid
     ORDER BY
@@ -208,7 +122,6 @@ exports.getScore = function(userid) {
           if (err) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err});
-            cb(err);
             return reject(err);
           }
 
