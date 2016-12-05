@@ -95,6 +95,41 @@ body {
   }
 }
 
+.mixin-qrcode {
+  .qrcode {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    img {
+      position: absolute;
+      .px2rem(top, 210);
+      .px2rem(left, 158);
+      .px2rem(width, 435);
+      .px2rem(height, 582);
+    }
+    &.show {
+      display: block;
+      .close-icon {
+        display: block;
+      }
+    }
+  }
+  .close-icon {
+    display: none;
+    .px2rem(width, 79);
+    .px2rem(height, 79);
+    background: url(/img/close-icon@2x.png) no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    .px2rem(bottom, 150);
+    .px2rem(left, 338);
+  }
+}
+
 #portal {
   .header {
     position: relative;
@@ -214,7 +249,7 @@ body {
   .header {
     display: block;
     .px2rem(width, 675);
-    .px2rem(height, 254);
+    .px2rem(height, 359);
     .px2rem(padding-bottom, 36);
     background: url(/img/rank-bg@2x.png) no-repeat center center;
     background-size: contain;
@@ -231,6 +266,12 @@ body {
         width: 50%;
         float: left;
         text-align: center;
+        color: #e63d1c;
+      }
+      .tip-info {
+        .px2rem(font-size, 24);
+        .px2rem(padding-left, 40);
+        .px2rem(padding-right, 40);
         color: #e63d1c;
       }
     }
@@ -309,9 +350,24 @@ body {
   .footer {
     clear: both;
     .mixin-action;
-    position: fixed;
-    bottom: 0.5rem;
-    left: 26%;
+    .action {
+      position: fixed;
+      bottom: 0.5rem;
+      left: 26%;
+    }
+    .px2rem(margin-top, 230);
+    .mixin-qrcode;
+    .header-title {
+      .px2rem(width, 487);
+      .px2rem(height, 77);
+      background: url(/img/header-title@2x.png) no-repeat center center;
+      background-size: contain;
+      margin: 0 auto;
+      .px2rem(margin-top, 36);
+    }
+    .close-icon {
+      bottom: 0;
+    }
   }
 }
 
@@ -761,36 +817,5 @@ body {
       .px2rem(height, 338);
     }
   }
-  .qrcode {
-    display: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.98);
-    img {
-      position: absolute;
-      .px2rem(top, 210);
-      .px2rem(left, 158);
-      .px2rem(width, 435);
-      .px2rem(height, 582);
-    }
-    &.show {
-      display: block;
-      .close-icon {
-        display: block;
-      }
-    }
-  }
-  .close-icon {
-    display: none;
-    .px2rem(width, 79);
-    .px2rem(height, 79);
-    background: url(/img/close-icon@2x.png) no-repeat center center;
-    background-size: contain;
-    position: absolute;
-    .px2rem(bottom, 150);
-    .px2rem(left, 338);
-  }
+  .mixin-qrcode;
 }

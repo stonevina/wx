@@ -6,6 +6,7 @@
     <div class="grade">
       <span class="item" id="J-selfRank"></span>
       <span class="item" id="J-selfScore"></span>
+      <div class="tip-info" id="J-showTip">*点击关注【点鲸财商在川大】,12月8日查看最终结果*</div>
     </div>
   </div>
   <div class="content">
@@ -37,6 +38,11 @@
   <div class="footer">
     <div class="action">
       <a href="/quiz/portal">立刻去挑战</a>
+    </div>
+    <div class="qrcode" id="J-code">
+      <div class="header-title"></div>
+      <i class="close-icon" id="J-close"></i>
+      <img src="/img/qrcode@2x.png" alt="">
     </div>
   </div>
 </div>

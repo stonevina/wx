@@ -9,12 +9,16 @@ var ScoreModel = require('../model/score_model.js');
 var rankView = Backbone.View.extend({
   el: '#container',
   events: {
-    
+    'click #J-showTip': 'showTip',
+    'click #J-close': 'hideQrcode'
   },
   template: rankTpl,
   initialize: function() {
     // this.user = $('#J-userinfo').data('user');
     this.model = new ScoreModel;
+  },
+  hideQrcode: function() {
+    $('#J-code').removeClass('show');
   },
   //获取自己的分数
   getSelfScore: function() {
@@ -30,6 +34,9 @@ var rankView = Backbone.View.extend({
       $('#J-selfRank').text(result.rank);
       $('#J-selfScore').text(formatTime(result.expended_time));
     })
+  },
+  showTip: function() {
+    $('#J-code').addClass('show');
   },
   render: function() {
     this.model.fetch()
