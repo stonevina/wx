@@ -34,7 +34,7 @@ exports.add = function *(next) {
 exports.showRanks = function *(next) {
   var result = yield scoreModel.showList();
   //显示前20名
-  yield this.api(result.slice(0, 20));
+  yield this.api(result);
 };
 
 //获取成绩
