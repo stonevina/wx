@@ -16,7 +16,7 @@ var userModel = Backbone.Model.extend({
       //微信用户unionid
       unionid: '',
       //微信用户昵称
-      nick_name: ''
+      nickname: ''
     }
   },
   url: '/quiz/v1/api/users'

@@ -17,14 +17,14 @@ exports.add = function *(next) {
   var openid = body.openid;
   var headimgurl = body.headimgurl;
   var unionid = body.unionid;
-  var nick_name = body.nick_name;
+  var nickname = body.nickname;
 
   //用户信息
   var user = {
     openid: openid,
     headimgurl: headimgurl,
     unionid: unionid,
-    nick_name: nick_name,
+    nickname: nickname,
     c_time: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
   };
 

@@ -27,7 +27,7 @@
             <% } else { %>
               <span class="fore1"><%=i + 1%></span>
             <% } %>
-            <span class="fore2"><%=person.nickname%></span>
+            <span class="fore2"><%=person.nickname || '&nbsp;'%></span>
             <span class="fore3"><%=formatTime(person.expended_time)%></span>
           </li>
         <% }) %>
