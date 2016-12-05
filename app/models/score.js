@@ -19,6 +19,10 @@ exports.newAndSave = function(score) {
       if (err) {
         var logid = genLogid();
         tclog.error({logid: logid, err: err});
+        
+        //释放连接
+        connection.release();
+
         return;
       }
 
@@ -27,10 +31,17 @@ exports.newAndSave = function(score) {
           if (err) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err});
+
+            //释放连接
+            connection.release();
+            
             return reject(err);
           }
 
           resolve(result);
+
+          //释放连接
+          connection.release();
 
           var logid = genLogid();
           tclog.notice({logid: logid, action: 'newAndSave', score: score, sql: query.sql});
@@ -57,7 +68,7 @@ exports.showList = function() {
           userid,
           c_time
         FROM
-          TB_SCORE where c_time between '2016-12-05 12:00:00' and '2016-12-07 00:00:00' 
+          TB_SCORE where c_time between '${config.ActivityTime[0]}' and '${config.ActivityTime[1]}'
         GROUP BY
           userid
       ) s2,
@@ -67,7 +78,7 @@ exports.showList = function() {
     AND s1.expended_time = s2.expended_time
     AND tu.unionid = s1.userid
     AND
-      s2.c_time between '2016-12-05 12:00:00' and '2016-12-07 00:00:00'
+      s2.c_time between '${config.ActivityTime[0]}' and '${config.ActivityTime[1]}'
     GROUP BY
       s1.userid,
       s1.expended_time
@@ -83,10 +94,17 @@ exports.showList = function() {
           if (err) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err});
+            
+            //释放连接
+            connection.release();
+            
             return reject(err);
           }
 
           resolve(result);
+
+          //释放连接
+          connection.release();
       });
     });
   });
@@ -122,10 +140,17 @@ exports.getScore = function(userid) {
           if (err) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err});
+
+            //释放连接
+            connection.release();
+
             return reject(err);
           }
 
           resolve(result);
+
+          //释放连接
+          connection.release();
       });
     });
   });

@@ -51,7 +51,7 @@
         </span>
       </div>
       <div class="prize-list-item">
-        <i class="prize-grade">11-30名</i>
+        <i class="prize-grade">11-20名</i>
         <span class="content">
           <p>良品铺子大礼包</p>
           <p>院级三等奖奖状</p>

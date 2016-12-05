@@ -17,6 +17,10 @@ exports.newAndSave = function(user) {
       if (err) {
         var logid = genLogid();
         tclog.error({logid: logid, err: err});
+
+        //释放连接
+        connection.release();
+        
         return;
       }
 
@@ -40,6 +44,10 @@ exports.newAndSave = function(user) {
           if (err) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err, sql: query.sql});
+            
+            //释放连接
+            connection.release();
+            
             return reject(err);
           }
 
@@ -53,10 +61,17 @@ exports.newAndSave = function(user) {
               if (err) {
                 var logid = genLogid();
                 tclog.error({logid: logid, err: err, sql: update.sql});
+                
+                //释放连接
+                connection.release();
+                
                 return reject(err);
               }
 
               resolve(result);
+
+              //释放连接
+              connection.release();
 
               var logid = genLogid();
               tclog.notice({logid: logid, action: 'newAndSave update', user: user, sql: update.sql});
@@ -68,10 +83,17 @@ exports.newAndSave = function(user) {
                 if (err) {
                   var logid = genLogid();
                   tclog.error({logid: logid, err: err, sql: insert.sql});
+                  
+                  //释放连接
+                  connection.release();
+                  
                   return reject(err);
                 }
 
                 resolve(result);
+
+                //释放连接
+                connection.release();
 
                 var logid = genLogid();
                 tclog.notice({logid: logid, action: 'newAndSave insert', user: user, sql: insert.sql});
@@ -89,6 +111,10 @@ exports.query = function(unionid) {
       if (err) {
         var logid = genLogid();
         tclog.error({logid: logid, err: err});
+
+        //释放连接
+        connection.release();
+        
         return;
       }
 
@@ -102,6 +128,9 @@ exports.query = function(unionid) {
         } else {
           resolve(false);
         }
+
+        //释放连接
+        connection.release();
       });
     });
   });

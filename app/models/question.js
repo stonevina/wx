@@ -19,6 +19,8 @@ exports.newAndSave = function(questions) {
       if (err) {
         var logid = genLogid();
         tclog.error({logid: logid, err: err});
+        //释放连接
+        connection.release();
         return;
       }
 
@@ -48,6 +50,10 @@ exports.newAndSave = function(questions) {
         if (err) {
           var logid = genLogid();
           tclog.error({logid: logid, err: err});
+          
+          //释放连接
+          connection.release();
+
           return reject(err);
         }
 
@@ -89,10 +95,17 @@ exports.showList = function(limit) {
             var logid = genLogid();
             tclog.error({logid: logid, err: err});
             cb(err);
+            
+            //释放连接
+            connection.release();
+            
             return reject(err);
           }
 
           resolve(result);
+
+          //释放连接
+          connection.release();
       });
     });
   });
