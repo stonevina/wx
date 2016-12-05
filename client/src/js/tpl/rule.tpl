@@ -1,7 +1,7 @@
 <div id="rule">
   <div class="item">
     <div class="title"><i class="triangle-icon"></i>活动时间</div>
-    <div class="time">2016年12月5日-2016年12月10日</div>
+    <div class="time">2016年12月5日-2016年12月7日</div>
   </div>
   <div class="item">
     <div class="title"><i class="triangle-icon"></i>玩法介绍</div>
@@ -10,7 +10,7 @@
         参与者进行答题，总答题时间最少获胜
       </div>
       <div class="list-item">
-        每次20道题
+        每次15道题
       </div>
       <div class="list-item">
         答错一题，总时间加15秒，答对无影响，总答题时间为实际答题时间加15秒×错题个数
@@ -61,7 +61,7 @@
     <div class="remark"></div>
     <div class="footer">
       <div class="conduct">
-        <span>本活最终解释权由点鲸财商俱乐部所有</span>
+        <span>本活动由四川大学点鲸财商俱乐部举办</span>
       </div>
     </div>
   </div>

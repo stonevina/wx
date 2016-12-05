@@ -42,7 +42,7 @@
     </div>
     <div class="time">
       <i class="time-icon"></i>
-      活动时间：12.05-12.15
+      活动时间：12.05 12:00-12.07 24:00
       <i class="time-icon"></i>
     </div>
   </div>

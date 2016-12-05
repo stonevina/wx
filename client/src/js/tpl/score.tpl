@@ -29,12 +29,13 @@
       <a class="item" href="/quiz/portal#analysis">错题解析</a>
     </div>
     <div class="qrcode" id="J-code">
+      <div class="header-title"></div>
       <i class="close-icon" id="J-close"></i>
       <img src="/img/qrcode@2x.png" alt="">
     </div>
     <div class="guide" id="J-guide"><img src="/img/guide.png"></div>
     <div class="conduct">
-      <span>本活动由点鲸财商俱乐部举办</span>
+      <span>本活动由四川大学点鲸财商俱乐部举办</span>
     </div>
   </div>
 </div>
