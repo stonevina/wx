@@ -44,7 +44,7 @@ exports.showList = function() {
   
   //汇总sql
   var querySql = `
-    SELECT
+     SELECT
       s1.expended_time,
       s1.right_count,
       s1.userid,
@@ -57,7 +57,7 @@ exports.showList = function() {
           userid,
           c_time
         FROM
-          TB_SCORE
+          TB_SCORE where c_time between '2016-12-05 12:00:00' and '2016-12-07 00:00:00' 
         GROUP BY
           userid
       ) s2,
@@ -67,7 +67,7 @@ exports.showList = function() {
     AND s1.expended_time = s2.expended_time
     AND tu.unionid = s1.userid
     AND
-      s2.c_time between '${config.ActivityTime[0]}' and '${config.ActivityTime[1]}'
+      s2.c_time between '2016-12-05 12:00:00' and '2016-12-07 00:00:00'
     GROUP BY
       s1.userid,
       s1.expended_time
